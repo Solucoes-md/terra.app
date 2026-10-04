@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env*
+!.env.example
+*.local
+*.tsbuildinfo
+playwright-report/
+test-results/
+.qa/
+.DS_Store
+Thumbs.db
+*.log

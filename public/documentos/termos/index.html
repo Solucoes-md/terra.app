@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termos de Uso — Terra - Live Wallpaper</title>
+<meta name="description" content="Termos de uso do Terra - Live Wallpaper: licença de uso, compras únicas via Google Play, reembolso, garantias e contato.">
+<meta name="robots" content="index, follow">
+<!--
+  Espelho de TERMOS.md (texto canônico, na raiz do repo).
+  Ao mudar um, mude o outro no mesmo commit.
+  Publicação: /docs → /documentos/termos/index.html (Cloudflare Pages).
+  Links internos são relativos (../privacidade/) de propósito: funcionam tanto na raiz
+  de um domínio quanto sob um subcaminho de project site.
+  Antes de publicar, substitua todos os [PREENCHER: …].
+-->
+<style>
+  :root{
+    --bg:#ffffff; --fg:#111111; --muted:#5c5c5c; --rule:#e2e2e2;
+    --surface:#f6f6f6; --mark-bg:#ffe9a8; --mark-fg:#3d2f00;
+    --measure:44rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d0d0d; --fg:#f2f2f2; --muted:#a1a1a1; --rule:#2a2a2a;
+      --surface:#171717; --mark-bg:#4a3a00; --mark-fg:#ffe9a8;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d0d0d; --fg:#f2f2f2; --muted:#a1a1a1; --rule:#2a2a2a;
+    --surface:#171717; --mark-bg:#4a3a00; --mark-fg:#ffe9a8;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --fg:#111111; --muted:#5c5c5c; --rule:#e2e2e2;
+    --surface:#f6f6f6; --mark-bg:#ffe9a8; --mark-fg:#3d2f00;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:clamp(1.5rem,5vw,4rem) clamp(1.1rem,5vw,2rem);
+  }
+  main{max-width:var(--measure); margin:0 auto}
+  header{border-bottom:1px solid var(--rule); padding-bottom:1.6rem; margin-bottom:2.4rem}
+  .kicker{
+    font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 .6rem;
+  }
+  h1{font-size:clamp(1.7rem,5.5vw,2.4rem); line-height:1.2; margin:0 0 1rem; font-weight:650}
+  h2{
+    font-size:clamp(1.15rem,3.4vw,1.35rem); font-weight:650; line-height:1.3;
+    margin:3rem 0 .8rem; padding-top:1.4rem; border-top:1px solid var(--rule);
+  }
+  h3{font-size:1.02rem; font-weight:650; margin:2rem 0 .5rem}
+  p,ul,ol{margin:0 0 1rem}
+  ul,ol{padding-left:1.4rem}
+  li{margin:.35rem 0}
+  li>ul{margin:.35rem 0 .35rem}
+  a{color:inherit; text-underline-offset:.18em; text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.88em; background:var(--surface); padding:.1em .35em; border-radius:4px;
+  }
+  strong{font-weight:650}
+  .meta{
+    list-style:none; padding:0; margin:0; color:var(--muted); font-size:.9rem;
+  }
+  .meta li{margin:.15rem 0}
+  .summary{
+    background:var(--surface); border:1px solid var(--rule); border-radius:12px;
+    padding:1.25rem 1.4rem; margin:0 0 1rem;
+  }
+  .summary h2{margin:0 0 .6rem; padding:0; border:0; font-size:1.1rem}
+  .summary p:last-child,.summary ul:last-child{margin-bottom:0}
+  .note{color:var(--muted); font-size:.92rem}
+  .fill{
+    background:var(--mark-bg); color:var(--mark-fg); padding:.05em .3em;
+    border-radius:3px; font-weight:650;
+  }
+  .table-wrap{overflow-x:auto; margin:0 0 1.2rem; border:1px solid var(--rule); border-radius:12px}
+  table{border-collapse:collapse; width:100%; min-width:30rem; font-size:.94rem}
+  th,td{text-align:left; vertical-align:top; padding:.7rem .9rem; border-bottom:1px solid var(--rule)}
+  thead th{background:var(--surface); font-weight:650; white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  table.kv th{width:38%; font-weight:650; background:transparent; white-space:normal}
+  /* Em tela estreita (celular, e a WebView do app é sempre estreita) a tabela
+     chave/valor vira blocos empilhados: com min-width:30rem ela era cortada
+     na horizontal e o valor ficava ilegível. */
+  @media (max-width:34rem){
+    table.kv{min-width:0}
+    table.kv th,table.kv td{display:block; width:auto}
+    table.kv th{padding-bottom:.15rem; border-bottom:0}
+    table.kv td{padding-top:0}
+  }
+  footer{
+    margin-top:3.5rem; padding-top:1.4rem; border-top:1px solid var(--rule);
+    color:var(--muted); font-size:.9rem;
+  }
+</style>
+</head>
+<body><aside style="padding:20px 24px;background:#202226;color:#f4f5f7;border-bottom:1px solid #9a9ea5;font:14px/1.7 system-ui,sans-serif;text-align:center">Documento de referência do aplicativo Terra. A vigência de lançamento ainda será definida pelo publicador. <a href="/" style="color:#fff;text-decoration:underline">Voltar ao site</a> · <a href="https://github.com/gabzieg/atmosfera/blob/main/public_html/termos/index.html" style="color:#fff;text-decoration:underline">Fonte do documento</a></aside>
+
+<main>
+<header>
+  <p class="kicker">Terra - Live Wallpaper</p>
+  <h1>Termos de Uso</h1>
+  <ul class="meta">
+    <li><strong>Versão dos termos:</strong> 1.0</li>
+    <li><strong>Aplica-se a:</strong> Terra - Live Wallpaper (Android, <code>com.terra.wallpaper</code>), a partir da versão 1.0.0</li>
+    <li><strong>Última atualização:</strong> 16 de setembro de 2026</li>
+    <li><strong>Vigente desde:</strong> <span class="fill">A confirmar no lançamento no Google Play</span></li>
+  </ul>
+</header>
+
+<section class="summary">
+  <h2>Resumo</h2>
+  <p class="note">Este resumo é uma cortesia e não substitui o texto completo abaixo.</p>
+  <ul>
+    <li>O Terra é um papel de parede animado que reage ao clima real da sua região. O uso é pessoal e não comercial.</li>
+    <li>Parte do conteúdo é <strong>gratuita</strong>; cenários extras e o Premium são <strong>compras únicas</strong> pelo Google Play — <strong>não há assinatura</strong> e não há cobrança recorrente.</li>
+    <li>Você compra uma <strong>licença de uso</strong> do conteúdo dentro do app, não a propriedade da arte. Não pode extrair, revender ou redistribuir os cenários.</li>
+    <li><strong>Reembolso</strong> segue as regras da Google Play — é com o Google, não conosco.</li>
+    <li>O app depende de um serviço externo de meteorologia (Open-Meteo). Se ele ficar fora do ar, o clima pode não atualizar. Isso não é defeito do app.</li>
+    <li>Tratamento de dados pessoais: ver a <a href="../privacidade/index.html">Política de Privacidade</a>.</li>
+  </ul>
+</section>
+
+<h2>1. Quem oferece o aplicativo</h2>
+<div class="table-wrap">
+<table class="kv">
+  <tbody>
+    <tr><th>Desenvolvedor</th><td><span class="fill">Rafael Huppes</span></td></tr>
+    <tr><th>Aplicativo</th><td>Terra - Live Wallpaper — <code>com.terra.wallpaper</code></td></tr>
+    <tr><th>Contato</th><td><a href="mailto:suporteterrabr@gmail.com">suporteterrabr@gmail.com</a></td></tr>
+    <tr><th>Endereço destes termos</th><td><a href="/documentos/termos/index.html">/documentos/termos/index.html</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>2. Aceitação</h2>
+<p>Ao instalar, abrir ou usar o Terra, você concorda com estes Termos de Uso e com a <a href="../privacidade/index.html">Política de Privacidade</a>. Se não concordar, desinstale o aplicativo — não há outra forma de uso.</p>
+<p>Se você tem menos de 18 anos, o uso e qualquer compra dependem de autorização e supervisão de um responsável legal, que também fica sujeito a estes termos.</p>
+
+<h2>3. O que o aplicativo faz</h2>
+<p>O Terra instala um papel de parede animado que desenha uma cena reagindo às condições meteorológicas atuais da sua localização aproximada — chuva, neve, nuvens, sol, lua, vento, neblina, ciclo de dia e noite. O aplicativo companion permite ativar o papel de parede, escolher cenário, variante de arte e estilo dos efeitos, e adquirir conteúdo adicional.</p>
+<p>O clima vem do serviço de terceiros <strong>Open-Meteo</strong>. Não somos autores desses dados meteorológicos e não garantimos precisão, atualidade ou disponibilidade deles — o Terra não é, e não deve ser usado como, ferramenta de previsão do tempo para qualquer decisão que dependa de exatidão meteorológica.</p>
+
+<h2>4. Licença de uso concedida a você</h2>
+<p>Concedemos a você uma licença <strong>pessoal, limitada, não exclusiva, intransferível e revogável</strong> para usar o aplicativo e o conteúdo adquirido dentro dele, em aparelhos vinculados à sua conta Google, para fins não comerciais.</p>
+<p>Esta licença <strong>não transfere propriedade</strong> de nada. Toda a arte, código, sprites, cenários, texturas, som (se houver), marca e identidade visual continuam sendo de titularidade do desenvolvedor ou de seus licenciadores.</p>
+
+<h3>4.1 O que você não pode fazer</h3>
+<ul>
+  <li>extrair, copiar, descompilar, aplicar engenharia reversa ou modificar o aplicativo ou seus recursos, salvo na medida em que a lei expressamente permita apesar desta proibição;</li>
+  <li>extrair os arquivos de arte dos cenários para uso fora do aplicativo;</li>
+  <li>revender, sublicenciar, alugar, redistribuir ou disponibilizar publicamente o conteúdo do aplicativo;</li>
+  <li>usar o conteúdo em produto, serviço, material promocional ou obra derivada de terceiros;</li>
+  <li>contornar mecanismos de verificação de compra ou usar versões modificadas do aplicativo;</li>
+  <li>usar o aplicativo para qualquer finalidade ilícita.</li>
+</ul>
+
+<h2>5. Compras dentro do aplicativo</h2>
+
+<h3>5.1 Modelo</h3>
+<p>O Terra oferece conteúdo gratuito e conteúdo pago. Todo conteúdo pago é vendido como <strong>compra única</strong> (não consumível), processada pelo <strong>Google Play Billing</strong>:</p>
+<ul>
+  <li><strong>Premium</strong> — libera todas as artes dos cinco cenários, todos os estilos de efeito e os oito efeitos vivos.</li>
+</ul>
+<p><strong>Não há assinatura, mensalidade, renovação automática ou cobrança recorrente de nenhuma espécie.</strong> Se isso mudar em versão futura, estes termos serão atualizados antes, e a mudança não afetará o que você já comprou.</p>
+
+<h3>5.2 Preço e cobrança</h3>
+<p>Preços são exibidos dentro do aplicativo, na moeda e com os impostos aplicáveis à sua conta Google Play. A cobrança é feita pelo Google, pelo meio de pagamento cadastrado na sua conta. Não recebemos, não vemos e não armazenamos dados de pagamento (ver seção 3.5 da <a href="../privacidade/index.html">Política de Privacidade</a>).</p>
+<p>Podemos alterar preços a qualquer momento. Alteração de preço <strong>nunca</strong> afeta compra já concluída.</p>
+
+<h3>5.3 Restauração de compras</h3>
+<p>Compras ficam vinculadas à sua conta Google, não ao aparelho. Ao reinstalar o aplicativo ou usar outro aparelho com a mesma conta, use <strong>Ajustes → Restaurar compras</strong>. Não é preciso comprar de novo.</p>
+
+<h3>5.4 Reembolso e direito de arrependimento</h3>
+<p>Reembolsos são processados pelo <strong>Google Play</strong>, conforme as políticas dele — não temos acesso ao seu pagamento e, por isso, não conseguimos processar reembolso diretamente. Solicite em <a href="https://play.google.com/store/account" rel="noopener noreferrer">play.google.com/store/account</a> ou pelo suporte do Google Play.</p>
+<p>Consumidores no Brasil têm o direito de arrependimento previsto no art. 49 do Código de Defesa do Consumidor (7 dias contados da compra, para contratação fora do estabelecimento comercial); esse direito é exercido pelo mesmo canal de reembolso da Google Play. Consumidores no Espaço Econômico Europeu e no Reino Unido têm direitos equivalentes de desistência sob a legislação local.</p>
+<p>Nada nestes termos afeta direitos que a legislação de consumo aplicável garanta a você e que não possam ser afastados por contrato.</p>
+
+<h2>6. Conteúdo futuro e disponibilidade</h2>
+<p>Podemos adicionar, alterar ou remover cenários, estilos e funcionalidades ao longo do tempo. Nos comprometemos a <strong>não remover o acesso a conteúdo que você já comprou</strong>, salvo se for tecnicamente impossível mantê-lo (por exemplo, alteração de política obrigatória da plataforma) — hipótese em que a remoção será comunicada.</p>
+<p>Não garantimos que o aplicativo estará disponível ininterruptamente, nem que funcionará em todos os aparelhos, versões de Android ou interfaces de fabricante. Papel de parede animado depende de recursos que alguns fabricantes restringem por economia de bateria; isso está fora do nosso controle.</p>
+
+<h3>6.1 Se o aplicativo for descontinuado</h3>
+<p>Se em algum momento deixarmos de publicar e manter o Terra, o aplicativo já instalado continua funcionando no seu aparelho enquanto o sistema operacional o suportar, e o conteúdo já comprado permanece desbloqueado localmente. O que deixa de existir é a atualização de clima, que depende de serviço externo, e a possibilidade de novas compras. A retirada do app da Google Play será comunicada nas notas de versão com a antecedência que a plataforma permitir.</p>
+
+<h2>7. Serviços de terceiros</h2>
+<p>O aplicativo depende de:</p>
+<ul>
+  <li><strong>Open-Meteo</strong> (dados meteorológicos) — <a href="https://open-meteo.com/en/terms" rel="noopener noreferrer">open-meteo.com/en/terms</a></li>
+  <li><strong>Google Play Services</strong> (localização no aparelho) — <a href="https://policies.google.com/terms" rel="noopener noreferrer">policies.google.com/terms</a></li>
+  <li><strong>Google Play Billing</strong> (pagamentos) — <a href="https://policies.google.com/terms" rel="noopener noreferrer">policies.google.com/terms</a></li>
+</ul>
+<p>O uso desses serviços é regido pelos termos de cada um. Não respondemos pela disponibilidade, precisão ou práticas deles.</p>
+
+<h2>8. Privacidade</h2>
+<p>O tratamento de dados pessoais é descrito na <a href="../privacidade/index.html">Política de Privacidade</a>, que integra estes termos. Em resumo: o app usa localização aproximada para consultar o clima, não tem conta, não exibe anúncios e não usa analytics. Alguns cenários são baixados de um servidor de arquivos (Cloudflare R2) quando você escolhe aplicá-los — esse servidor não recebe sua localização nem processa dado pessoal (política §3.8).</p>
+
+<h2>9. Garantias e limitação de responsabilidade</h2>
+<p>O aplicativo é fornecido <strong>"no estado em que se encontra"</strong>, sem garantias além das legalmente obrigatórias. Não garantimos que estará livre de erros, nem que os dados meteorológicos exibidos serão exatos.</p>
+<p>Na máxima extensão permitida pela lei aplicável, não respondemos por danos indiretos, lucros cessantes, perda de dados ou consumo de bateria/dados móveis decorrentes do uso do aplicativo. <strong>Esta limitação não se aplica</strong> a dolo, culpa grave, danos à vida, integridade física ou saúde, nem a qualquer responsabilidade que a legislação de consumo aplicável não permita excluir ou limitar — em especial as garantias legais do Código de Defesa do Consumidor brasileiro.</p>
+
+<h2>10. Suspensão e encerramento</h2>
+<p>Você pode encerrar o uso a qualquer momento desinstalando o aplicativo. Desinstalar não cancela nem reembolsa compras já feitas — elas permanecem vinculadas à sua conta Google e podem ser restauradas.</p>
+<p>Podemos encerrar ou suspender o acesso em caso de violação destes termos, em especial das vedações da seção 4.1.</p>
+
+<h2>11. Alterações destes termos</h2>
+<p>Podemos alterar estes termos para refletir mudanças no aplicativo, na legislação ou nas políticas das plataformas. A versão vigente é sempre a publicada no endereço indicado na seção 1, com data de última atualização no topo. Alterações materiais serão comunicadas nas notas de versão da Google Play e, quando a lei exigir, dentro do aplicativo.</p>
+<p>Continuar usando o aplicativo após a entrada em vigor de uma alteração significa que você tomou conhecimento dela.</p>
+
+<h2>12. Lei aplicável e foro</h2>
+<p>Estes termos são regidos pelas leis da <strong>República Federativa do Brasil</strong>.</p>
+<p>Fica eleito o foro de <span class="fill">Novo Hamburgo (RS)</span> para dirimir controvérsias, ressalvado o direito do consumidor de demandar no foro do seu próprio domicílio (art. 101, I do Código de Defesa do Consumidor) e as regras de competência que a lei do país de residência do usuário torne obrigatórias.</p>
+
+<h2>13. Contato</h2>
+<div class="table-wrap">
+<table class="kv">
+  <tbody>
+    <tr><th>Suporte, dúvidas e reclamações</th><td><a href="mailto:suporteterrabr@gmail.com">suporteterrabr@gmail.com</a></td></tr>
+    <tr><th>Assuntos de privacidade</th><td><a href="mailto:suporteterrabr@gmail.com">suporteterrabr@gmail.com</a> — ver <a href="../privacidade/index.html">Política de Privacidade</a></td></tr>
+    <tr><th>Reembolso</th><td>Google Play — <a href="https://play.google.com/store/account" rel="noopener noreferrer">play.google.com/store/account</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>14. Idioma e versão prevalente</h2>
+<p>O texto canônico destes termos é o <strong>português do Brasil</strong>, publicado em <a href="/documentos/termos/index.html">/documentos/termos/index.html</a>. Traduções, quando existirem, são cortesia; em caso de divergência de interpretação, prevalece a versão em português.</p>
+
+<h2>15. Histórico de versões</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Versão</th><th>Data</th><th>Mudança</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td><span class="fill">A confirmar no lançamento no Google Play</span></td><td>Versão inicial, referente ao Terra 1.0.0</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>
+  <p>Outros documentos: <a href="../privacidade/index.html">Política de Privacidade</a> · <a href="../contato/index.html">Contato e uso de dados</a></p>
+  <p>Terra - Live Wallpaper — Termos de Uso, versão 1.0.</p>
+</footer>
+</main>
+</body>
+</html>

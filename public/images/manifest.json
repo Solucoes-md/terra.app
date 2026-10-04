@@ -1,0 +1,92 @@
+[
+  {
+    "scene": "cabana",
+    "sourceArt": "pixel",
+    "width": 480,
+    "bytes": 98966
+  },
+  {
+    "scene": "cabana",
+    "sourceArt": "pixel",
+    "width": 960,
+    "bytes": 232960
+  },
+  {
+    "scene": "cabana",
+    "sourceArt": "pixel",
+    "width": 1440,
+    "bytes": 389068
+  },
+  {
+    "scene": "bruxa",
+    "sourceArt": "clay",
+    "width": 480,
+    "bytes": 53776
+  },
+  {
+    "scene": "bruxa",
+    "sourceArt": "clay",
+    "width": 960,
+    "bytes": 139926
+  },
+  {
+    "scene": "bruxa",
+    "sourceArt": "clay",
+    "width": 1440,
+    "bytes": 215526
+  },
+  {
+    "scene": "lavanda",
+    "sourceArt": "aqua",
+    "width": 480,
+    "bytes": 86878
+  },
+  {
+    "scene": "lavanda",
+    "sourceArt": "aqua",
+    "width": 960,
+    "bytes": 288738
+  },
+  {
+    "scene": "lavanda",
+    "sourceArt": "aqua",
+    "width": 1440,
+    "bytes": 439290
+  },
+  {
+    "scene": "esfinge",
+    "sourceArt": "vangogh",
+    "width": 480,
+    "bytes": 118816
+  },
+  {
+    "scene": "esfinge",
+    "sourceArt": "vangogh",
+    "width": 960,
+    "bytes": 423660
+  },
+  {
+    "scene": "esfinge",
+    "sourceArt": "vangogh",
+    "width": 1440,
+    "bytes": 684492
+  },
+  {
+    "scene": "jardim",
+    "sourceArt": "ukiyoe",
+    "width": 480,
+    "bytes": 130944
+  },
+  {
+    "scene": "jardim",
+    "sourceArt": "ukiyoe",
+    "width": 960,
+    "bytes": 382542
+  },
+  {
+    "scene": "jardim",
+    "sourceArt": "ukiyoe",
+    "width": 1440,
+    "bytes": 612288
+  }
+]
