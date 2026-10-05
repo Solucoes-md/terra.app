@@ -1,0 +1,193 @@
+import { test, expect } from '@playwright/test'
+import { readFile } from 'node:fs/promises'
+
+const privacyPath = '/documentos/privacidade/index.html'
+
+for (const width of [320, 375, 768, 1024, 1440]) {
+  test(`privacidade: leitura e recursos em ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 })
+    const errors: string[] = []
+    const failedResources: string[] = []
+    page.on('pageerror', error => errors.push(error.message))
+    page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
+    page.on('requestfailed', request => failedResources.push(request.url()))
+    page.on('response', response => { if (response.status() >= 400) failedResources.push(response.url()) })
+    const response = await page.goto(privacyPath)
+    expect(response?.status()).toBe(200)
+    await page.evaluate(() => document.fonts.ready)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Política de Privacidade')
+    const title = await page.locator('h1').evaluate(element => ({
+      lines: element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight),
+      overflow: element.scrollWidth > element.clientWidth,
+    }))
+    expect(Math.round(title.lines)).toBe(2)
+    expect(title.overflow).toBe(false)
+    await expect(page.locator('.policy-chapter')).toHaveCount(16)
+    await expect(page.locator('.policy-meta')).toContainText('1.1')
+    await expect(page.locator('.policy-meta')).toContainText('29 de setembro de 2026')
+    await expect(page.locator('.policy-meta')).toContainText('A confirmar no lançamento no Google Play')
+    await expect(page.locator('#secao-3-1')).toBeAttached()
+    await expect(page.locator('#politica')).toContainText('São Paulo (SP, Brasil)')
+    await expect(page.locator('body')).not.toContainText('[PREENCHER:')
+    if (width >= 1024) {
+      await expect(page.locator('.policy-sidebar')).toBeVisible()
+      await expect(page.locator('.mobile-index')).toBeHidden()
+    } else {
+      await expect(page.locator('.policy-sidebar')).toBeHidden()
+      await expect(page.locator('.mobile-index summary')).toBeVisible()
+    }
+    expect(await page.evaluate(() => document.fonts.check('16px Geist'))).toBe(true)
+    const failures = await page.evaluate(async () => {
+      const overflows: number[] = []
+      for (let y = 0; y < document.documentElement.scrollHeight; y += 800) {
+        window.scrollTo({ top: y, behavior: 'instant' })
+        await new Promise(resolve => requestAnimationFrame(resolve))
+        if (document.documentElement.scrollWidth > window.innerWidth) overflows.push(y)
+      }
+      const tables = Array.from(document.querySelectorAll('.table-wrap')).filter(table => table.scrollWidth > table.clientWidth + 1)
+      return { overflows, tables: tables.length }
+    })
+    expect(failures).toEqual({ overflows: [], tables: 0 })
+    expect(errors).toEqual([])
+    expect(failedResources).toEqual([])
+    for (const [label, document] of [['Termos de Uso', 'termos'], ['Contato e uso de dados', 'contato']]) {
+      const link = page.getByRole('link', { name: label, exact: true })
+      const documentResponse = await page.request.get(await link.evaluate(element => (element as HTMLAnchorElement).href))
+      expect(documentResponse.status()).toBe(200)
+      expect(await documentResponse.text()).toContain(`<h1>${label}</h1>`)
+      await expect(link).toHaveAttribute('href', `../${document}/index.html`)
+    }
+  })
+}
+
+test('privacidade: índice móvel, âncoras e retorno com teclado', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 })
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto(privacyPath)
+  await page.keyboard.press('Tab')
+  const skip = page.getByRole('link', { name: 'Pular para o conteúdo' })
+  await expect(skip).toBeFocused()
+  await skip.press('Enter')
+  await expect(page.locator('#conteudo')).toBeFocused()
+  const summary = page.locator('.mobile-index summary')
+  await summary.focus()
+  await summary.press('Enter')
+  await expect(page.locator('.mobile-index')).toHaveAttribute('open', '')
+  const index = page.getByRole('navigation', { name: 'Índice da política' })
+  await expect(index.getByRole('link')).toHaveCount(16)
+  const rights = index.getByRole('link', { name: 'Seus direitos', exact: true })
+  await rights.focus()
+  await rights.press('Enter')
+  await expect(page).toHaveURL(/#secao-10$/)
+  await expect(page.locator('#secao-10')).toBeFocused()
+  expect(await page.locator('#secao-10').evaluate(element => element.getBoundingClientRect().top)).toBeGreaterThan(78)
+  await summary.focus()
+  await summary.press('Space')
+  await expect(page.locator('.mobile-index')).not.toHaveAttribute('open', '')
+  await expect(page.locator('.mobile-index nav')).toBeHidden()
+  await expect(page.locator('.contact-panel a')).toHaveAttribute('href', 'mailto:suporteterrabr@gmail.com')
+  const back = page.getByRole('link', { name: 'Voltar ao site', exact: true })
+  await back.focus()
+  await back.press('Enter')
+  await expect(page).toHaveURL(/\/$/)
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('O clima muda.Sua tela também.')
+})
+
+test('privacidade: todos os capítulos e links funcionam sem JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce', viewport: { width: 375, height: 812 } })
+  const page = await context.newPage()
+  try {
+    await page.goto(`http://127.0.0.1:5173${privacyPath}`)
+    await expect(page.locator('.policy-chapter')).toHaveCount(16)
+    await page.locator('.mobile-index summary').click()
+    const links = page.getByRole('navigation', { name: 'Índice da política' }).getByRole('link')
+    await expect(links).toHaveCount(16)
+    for (let chapter = 1; chapter <= 16; chapter++) {
+      await expect(links.nth(chapter - 1)).toHaveAttribute('href', `#secao-${chapter}`)
+      await expect(page.locator(`#secao-${chapter}`)).toBeAttached()
+    }
+    await links.last().click()
+    await expect(page).toHaveURL(/#secao-16$/)
+    await expect(page.locator('#secao-16')).toBeInViewport()
+    await page.getByRole('link', { name: 'Voltar ao início', exact: true }).click()
+    await expect(page).toHaveURL(/#conteudo$/)
+    await expect(page.locator('h1')).toBeInViewport()
+    await page.getByRole('link', { name: 'Ler a política', exact: true }).click()
+    await expect(page).toHaveURL(/#politica$/)
+  } finally {
+    await context.close()
+  }
+})
+
+test('privacidade: redimensionamento, foco visível e movimento reduzido', async ({ page }) => {
+  await page.goto(privacyPath)
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await expect(page.locator('.policy-sidebar')).toHaveCSS('position', 'sticky')
+  const index = page.locator('.policy-sidebar').getByRole('link', { name: 'Contato', exact: true })
+  await index.focus()
+  await expect(index).toBeFocused()
+  expect(await index.evaluate(element => getComputedStyle(element).outlineStyle)).toBe('solid')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto')
+  await page.setViewportSize({ width: 768, height: 900 })
+  await expect(page.locator('.policy-sidebar')).toBeHidden()
+  await expect(page.locator('.mobile-index summary')).toBeVisible()
+  await page.locator('.mobile-index summary').click()
+  await page.setViewportSize({ width: 1024, height: 900 })
+  await expect(page.locator('.policy-sidebar')).toBeVisible()
+  await expect(page.locator('.mobile-index')).toBeHidden()
+  await expect(page.locator('.policy-chapter')).toHaveCount(16)
+})
+
+test('privacidade: impressão contém texto completo e tabelas com cabeçalhos', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 })
+  await page.goto(privacyPath)
+  await page.emulateMedia({ media: 'print' })
+  await expect(page.locator('.legal-header')).toBeHidden()
+  await expect(page.locator('.mobile-index')).toBeHidden()
+  await expect(page.locator('.intro-actions')).toBeHidden()
+  await expect(page.locator('.contact-panel')).toBeHidden()
+  await expect(page.locator('.summary')).toBeVisible()
+  await expect(page.locator('.policy-meta')).toBeVisible()
+  await expect(page.locator('.policy-chapter')).toHaveCount(16)
+  await expect(page.locator('html')).toHaveCSS('background-color', 'rgb(255, 255, 255)')
+  for (const header of await page.locator('thead').all()) await expect(header).toHaveCSS('display', 'table-header-group')
+  expect(await page.locator('table:not(.kv) td').first().evaluate(element => getComputedStyle(element, '::before').display)).toBe('none')
+})
+
+test('privacidade: conteúdo integral corresponde ao documento de origem', async ({ page }) => {
+  const original = await readFile('tests/fixtures/privacy-source.html', 'utf8')
+  await page.setContent(original)
+  const normalized = (value: string) => value.replace(/\s+/g, ' ').trim()
+  const expected = await page.locator('main').evaluate(element => {
+    element.querySelector('header')?.remove()
+    element.querySelector('.summary')?.remove()
+    element.querySelector('footer')?.remove()
+    return element.textContent ?? ''
+  })
+  await page.goto(privacyPath)
+  expect(normalized(await page.locator('#politica').textContent() ?? '')).toBe(normalized(expected
+    .replaceAll('São Paulo (RS, Brasil)', 'São Paulo (SP, Brasil)')
+    .replace(/\[PREENCHER: data[^\]]*\]/g, 'A confirmar no lançamento no Google Play')
+    .replaceAll('https://terra-livewallpaper.pages.dev/privacidade/', privacyPath)))
+})
+
+test('privacidade: importação acompanha novos metadados e contato sem perder o texto', async ({ page }) => {
+  const original = await readFile('tests/fixtures/privacy-source.html', 'utf8')
+  const { renderPrivacy } = await import('../scripts/render-privacy.mjs')
+  const source = original
+    .replaceAll('suporteterrabr@gmail.com', 'novo-contato@example.com')
+    .replace('Versão da política:</strong> 1.1', 'Versão da política:</strong> 1.2')
+    .replaceAll('29 de setembro de 2026', '4 de outubro de 2026')
+    .replace('<h2>10. Seus direitos</h2>', '<h2>10. Seus direitos atualizados</h2>')
+  await page.setContent(renderPrivacy(source))
+  await expect(page.locator('.policy-chapter')).toHaveCount(16)
+  await expect(page.locator('.policy-meta')).toContainText('1.2')
+  await expect(page.locator('.policy-meta')).toContainText('4 de outubro de 2026')
+  await expect(page.locator('.intro-actions a').last()).toHaveAttribute('href', 'mailto:novo-contato@example.com')
+  await expect(page.locator('.contact-panel a')).toHaveAttribute('href', 'mailto:novo-contato@example.com')
+  await expect(page.locator('.policy-sidebar a[href="#secao-10"]')).toContainText('Seus direitos atualizados')
+  const actualSummary = (await page.locator('.summary').textContent() ?? '').replace(/\s+/g, ' ').trim()
+  await page.setContent(original)
+  expect(actualSummary).toBe((await page.locator('.summary').textContent() ?? '').replace(/\s+/g, ' ').trim())
+})

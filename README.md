@@ -37,7 +37,23 @@ Até a URL ser fornecida, os CTAs levam à demonstração da própria página. A
 
 Na mesma configuração estão os links legais e o e-mail de suporte do projeto. Não há cadastro, envio de formulário, analytics nem consulta ao clima ou à localização do visitante.
 
-As páginas do domínio antigo `terra-livewallpaper.pages.dev` não resolveram na verificação. Por isso, o rodapé abre cópias locais dos HTML existentes em `public_html/`, em `/documentos/privacidade/index.html`, `/documentos/termos/index.html` e `/documentos/contato/index.html`. Elas estão identificadas como documentos de referência do aplicativo: a vigência ainda depende da publicação no Google Play. As datas pendentes estão explicitamente marcadas; os textos legais do projeto de origem não foram alterados. Estas cópias não substituem a revisão do publicador antes do lançamento do app.
+As páginas do domínio antigo `terra-livewallpaper.pages.dev` não resolveram na verificação. Por isso, o rodapé abre documentos locais em `/documentos/privacidade/index.html`, `/documentos/termos/index.html` e `/documentos/contato/index.html`. Eles estão identificados como documentos de referência do aplicativo: a vigência ainda depende da publicação no Google Play. As datas pendentes estão explicitamente marcadas.
+
+## Página de privacidade
+
+Com o servidor de desenvolvimento aberto, acesse [http://127.0.0.1:5173/documentos/privacidade/index.html](http://127.0.0.1:5173/documentos/privacidade/index.html). No preview de produção, use a porta `4173` no mesmo endereço.
+
+A página usa HTML semântico e CSS dedicado, a fonte Geist local e a identidade visual do Terra. O texto completo, o índice com 16 capítulos, os links e o índice recolhível no celular funcionam sem JavaScript. A navegação lateral fica fixa a partir de 1024 px; tabelas viram blocos identificados em telas estreitas. A impressão usa fundo branco e inclui o resumo, os metadados e todos os capítulos. O movimento reduzido desativa a rolagem suave.
+
+O conteúdo vem de `public_html/privacidade/index.html` do Atmosfera, sincronizado com as cópias HTML do aplicativo. Nesta apresentação, a versão continua **1.1**, com atualização em **29 de setembro de 2026**. A vigência permanece **a confirmar no lançamento no Google Play**. A única correção no texto substantivo é `São Paulo (RS, Brasil)` → `São Paulo (SP, Brasil)`, confirmada em `LocationHelper.kt` pelas coordenadas padrão `-23.5505, -46.6333`. Os endereços legais foram adaptados aos documentos locais; os demais compromissos e informações são preservados. Nenhum arquivo do Atmosfera é modificado.
+
+Para importar uma nova revisão, atualize primeiro o documento no projeto de origem e execute, a partir da raiz deste site:
+
+```powershell
+node scripts/prepare-documents.mjs "D:\Git repos\atmosfera"
+```
+
+O gerador aplica o layout de privacidade automaticamente, extrai metadados e contato do HTML original e cria o índice a partir dos capítulos numerados. Ele mantém o CSS dedicado e também atualiza as cópias de Termos e Contato. Revise o diff e execute as validações após a importação. Após conferir uma mudança de conteúdo, atualize `tests/fixtures/privacy-source.html` com o HTML de origem antes das adaptações: essa referência permite detectar perda ou alteração involuntária do texto nos testes. Edite a apresentação em `scripts/render-privacy.mjs` e `public/documentos/privacidade/styles.css`; o HTML final é gerado e versionado para funcionar sem acesso ao checkout Android. A revisão do publicador e a definição da vigência continuam necessárias antes do lançamento do app.
 
 ## Verificar
 
@@ -49,6 +65,8 @@ npm run test:e2e
 ```
 
 Os testes Playwright verificam 320, 375, 768, 1024 e 1440 px; título em duas linhas; ausência de rolagem horizontal; imagens carregadas; seleção por teclado; menu móvel; prévia de chuva e noite; pausa; movimento reduzido; redimensionamento; e configuração dos CTAs.
+
+Na página de privacidade, verificam também as cinco larguras, índice e âncoras por teclado, leitura sem JavaScript, tabelas responsivas, impressão, recursos locais e preservação do conteúdo na regeneração. Para executar apenas essas verificações, use `npm run test:e2e -- tests/privacy.spec.ts`.
 
 No Windows, os testes aproveitam o Google Chrome instalado no caminho padrão. Em outro ambiente, instale o navegador do Playwright com `npx playwright install chromium`. Para usar um executável próprio, configure `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. O servidor local é iniciado automaticamente pelos testes, ou reaproveitado quando já está rodando.
 
