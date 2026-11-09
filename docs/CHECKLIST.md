@@ -10,7 +10,7 @@ Escopo da [issue #1](https://github.com/Solucoes-md/terra.app/issues/1), baseado
 - Servir Privacidade, Termos e Contato pelo próprio site. A fonte canônica é [`gabzieg/atmosfera/docs/legal/`](https://github.com/gabzieg/atmosfera/tree/main/docs/legal).
 - Conjunto com redação aceita: Privacidade 1.22, Termos 1.12 e Contato 1.10. Vigência ainda pendente. O manifesto consultado ainda registra `aprovado_para_publicacao=false`; o aceite da redação não encerra as pendências de publicação.
 - Domínio escolhido: `terrawallpaper.com.br`, no Registro.br, na conta do Gabriel. Hospedagem: Cloudflare Pages; DNS: Cloudflare, na conta Cloudflare do Rafael. Confirmar o estado operacional nas etapas abaixo.
-- Site completo antes da publicação do app em produção, sem versão provisória. A URL da ficha pública do Google Play entra no botão quando o app for publicado; até lá, manter a demonstração local.
+- Pedido posterior de Gabriel em 09/11/2026, repassado pela Friday: publicar o site hoje com as páginas legais referenciadas à revisão atual do Atmosfera; substitui a exigência de versão completa antes da publicação. Execução e configuração de produção continuam com o dono. A URL da ficha pública do Google Play entra no botão quando o app for publicado; até lá, manter a demonstração local.
 - Trocar a URL da política no Google Play Console e retirar o Google Sites somente depois de o novo site estar no ar e verificado.
 - Repositório público: não incluir dados pessoais, credenciais, tokens, informações de contas ou comprovantes privados. Compra de domínio, criação de contas e publicação cabem a Gabriel. Mudanças no código e na documentação passam por PR, nunca diretamente na `main`.
 
@@ -24,11 +24,22 @@ Marcar um item somente quando seu critério estiver atendido. Registrar evidênc
 
 Preparação técnica entregue no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
 
-**Próximo passo:** Willian revisar a tabela de seções e decisões no PR #6; adequar a hospedagem na fonte legal e corrigir as dependências da issue #5 antes de publicar. A aprovação legal, a vigência e a publicação continuam pendentes de Gabriel. O [PR #3](https://github.com/Solucoes-md/terra.app/pull/3) foi integrado em 09/11/2026: conta Cloudflare e domínio conferidos; isso não configura nem publica Pages.
+**Próximo passo:** concluir e revisar o build automático da issue #4/PR #6; com os gates aprovados, avisar Gabriel para configurar Pages, Deploy Hook e secret. Confirmar a revisão de Willian antes do merge; corrigir as dependências da issue #5 e acompanhar a revisão legal canônica. A aprovação legal, a vigência e a publicação continuam pendentes de Gabriel. O [PR #3](https://github.com/Solucoes-md/terra.app/pull/3) foi integrado em 09/11/2026: conta Cloudflare e domínio conferidos; isso não configura nem publica Pages.
 
 **Dependência legal conferida:** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
 
 **Pendência de dependências:** a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) registra os alertas preexistentes encontrados por `npm audit --json` em 09/11/2026 no commit `c2fe470`: correção e conferência antes da publicação, separadas da importação legal.
+
+### Ajuste em implementação — atualização automática
+
+A issue #4/PR #6 foi ampliada após o pedido de Gabriel, repassado pela Friday em 09/11/2026 às 16:15 (America/Sao_Paulo). A revisão técnica anterior permanece registrada, mas o novo comportamento exige gates e revisão novos. Não considerar a importação manual fixa como entrega final.
+
+- [ ] Site: `npm run build` busca uma única revisão da `main` do Atmosfera, confere manifesto e hashes, gera as três rotas legais e mostra versão, commit e permalink da fonte em cada página; sem cópias manuais versionadas.
+- [ ] Site: falha de rede, manifesto ou hash interrompe o build, sem publicar cópia antiga silenciosamente; controles negativos e caso de atualização válida comprovados.
+- [ ] Gabriel: configurar integração GitHub do Pages com a `main` do Terra, build `npm run build`, saída `dist` e Node.js 24; criar Deploy Hook na conta Cloudflare do Rafael e guardar o secret fora do Git.
+- [ ] App Atmosfera: disparar o Deploy Hook quando as fontes legais mudarem, no fluxo mantido pela lead daquele projeto; conferir atualização pública efetiva, não somente disparo aceito.
+- [ ] Gabriel / App Atmosfera: registrar vigência e metadados na fonte canônica, conforme decisão real; o site preserva o estado recebido e não inventa aprovação.
+- [ ] Antes de tornar Atmosfera privado após o lançamento: configurar token com leitura mínima para o build. A consulta anônima deixará de funcionar; guardar token somente no ambiente de build, sem expor em página, log ou repositório.
 
 ## 1. Base e qualidade
 
@@ -90,7 +101,7 @@ Executar na ordem abaixo. Não retirar o endereço atual antes de confirmar que 
 
 | Estado | Entrega | Responsável | Critério de pronto |
 | --- | --- | --- | --- |
-| [ ] | Autorizar a versão completa | Willian aprova conteúdo; Gabriel autoriza publicação | Conteúdo e documentos aprovados, vigência definida, critérios anteriores atendidos e commit candidato identificado; sem versão provisória. A ficha do Play continua dependente da publicação do app. |
+| [ ] | Autorizar a versão completa | Willian aprova conteúdo; Gabriel autoriza publicação | Conteúdo e documentos aprovados, vigência definida, critérios anteriores atendidos e commit candidato identificado; considerar o pedido posterior de publicação em 09/11/2026, preservando pendências explícitas. A ficha do Play continua dependente da publicação do app. |
 | [ ] | Publicar o site | Gabriel | Deploy do commit aprovado no domínio final; registrar URL, commit e identificação pública do deploy sem dados de conta. |
 | [ ] | Verificar acesso público | Site verifica; Gabriel aceita | Abrir início e as três rotas legais por HTTPS, em sessão anônima e no celular, sem login; receber os documentos corretos, e não o HTML da landing por fallback. Conferir versões, links, fontes, imagens, navegação e ausência de rastreio. |
 | [ ] | Trocar política no Google Play Console | Gabriel / App Atmosfera | Somente após a verificação pública: substituir o link pela URL HTTPS final de privacidade e conferir o valor salvo no Console. Registro de conclusão sem capturas ou dados privados no repositório. |
