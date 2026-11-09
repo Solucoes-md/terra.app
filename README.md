@@ -4,12 +4,15 @@ Landing page em português brasileiro do **Terra**, aplicativo Android de papéi
 
 O site é um projeto independente. Conteúdo e artes vieram do [projeto Atmosfera](https://github.com/gabzieg/atmosfera); nenhuma alteração no aplicativo Android é necessária para executar esta página.
 
+O [checklist de conclusão e publicação](docs/CHECKLIST.md) reúne o escopo, os responsáveis, os critérios de pronto e as dependências do app. O destino definido é Cloudflare Pages em `terrawallpaper.com.br`, na conta do Gabriel. Alterações são entregues por PR.
+
 ## Executar localmente
 
 Pré-requisitos: Node.js 24 ou superior e npm. Validado com Node.js 25.2.1 e npm 11.6.2.
 
 ```powershell
-cd "D:\Git repos\terra.app"
+git clone https://github.com/Solucoes-md/terra.app.git
+cd terra.app
 npm ci
 npm run dev
 ```
@@ -27,7 +30,7 @@ Abra [http://127.0.0.1:4173](http://127.0.0.1:4173). A saída estática fica em 
 
 ## Configurar o Google Play
 
-Edite `src/content/site.ts` e substitua `playStoreUrl: null` pela URL pública do aplicativo ou pelo link de adesão ao teste:
+Quando o app for publicado, edite `src/content/site.ts` e substitua `playStoreUrl: null` pela URL da ficha pública fornecida por Gabriel:
 
 ```ts
 playStoreUrl: 'URL_FORNECIDA_PELO_PUBLICADOR' as string | null,
@@ -45,12 +48,12 @@ Com o servidor de desenvolvimento aberto, acesse [http://127.0.0.1:5173/document
 
 A página usa HTML semântico e CSS dedicado, a fonte Geist local e a identidade visual do Terra. O texto completo, o índice com 16 capítulos, os links e o índice recolhível no celular funcionam sem JavaScript. A navegação lateral fica fixa a partir de 1024 px; tabelas viram blocos identificados em telas estreitas. A impressão usa fundo branco e inclui o resumo, os metadados e todos os capítulos. O movimento reduzido desativa a rolagem suave.
 
-O conteúdo vem de `public_html/privacidade/index.html` do Atmosfera, sincronizado com as cópias HTML do aplicativo. Nesta apresentação, a versão continua **1.1**, com atualização em **29 de setembro de 2026**. A vigência permanece **a confirmar no lançamento no Google Play**. A única correção no texto substantivo é `São Paulo (RS, Brasil)` → `São Paulo (SP, Brasil)`, confirmada em `LocationHelper.kt` pelas coordenadas padrão `-23.5505, -46.6333`. Os endereços legais foram adaptados aos documentos locais; os demais compromissos e informações são preservados. Nenhum arquivo do Atmosfera é modificado.
+As cópias atuais estão desatualizadas: a privacidade ainda está em **1.1**, com atualização em **29 de setembro de 2026**. Elas foram importadas de `public_html/` do Atmosfera. A fonte canônica atual é [`docs/legal/`](https://github.com/gabzieg/atmosfera/tree/main/docs/legal), com Privacidade **1.22**, Termos **1.12** e Contato **1.10**, conforme a decisão registrada na issue #1. A vigência e a autorização final de publicação permanecem pendentes; aceite de redação não equivale a publicação aprovada.
 
-Para importar uma nova revisão, atualize primeiro o documento no projeto de origem e execute, a partir da raiz deste site:
+O importador existente ainda lê as exportações HTML de `public_html/`, não as fontes Markdown canônicas. Antes de atualizar as cópias deste site, siga a geração e a conferência descritas no README de `docs/legal/` do Atmosfera e verifique as versões e o manifesto. A adequação do importador, a cobertura da hospedagem do site e a revisão das cópias estão pendentes no checklist. Para executar o importador existente sobre um checkout de origem já conferido, a partir da raiz deste site:
 
 ```powershell
-node scripts/prepare-documents.mjs "D:\Git repos\atmosfera"
+node scripts/prepare-documents.mjs "../atmosfera"
 ```
 
 O gerador aplica o layout de privacidade automaticamente, extrai metadados e contato do HTML original e cria o índice a partir dos capítulos numerados. Ele mantém o CSS dedicado e também atualiza as cópias de Termos e Contato. Revise o diff e execute as validações após a importação. Após conferir uma mudança de conteúdo, atualize `tests/fixtures/privacy-source.html` com o HTML de origem antes das adaptações: essa referência permite detectar perda ou alteração involuntária do texto nos testes. Edite a apresentação em `scripts/render-privacy.mjs` e `public/documentos/privacidade/styles.css`; o HTML final é gerado e versionado para funcionar sem acesso ao checkout Android. A revisão do publicador e a definição da vigência continuam necessárias antes do lançamento do app.
@@ -88,7 +91,7 @@ A seleção de cenários usa o catálogo Android como fonte da verdade, com as a
 As cópias WebP já estão incluídas em `public/images/`; o site não depende do checkout Android após o clone. Para regenerá-las a partir do projeto de origem:
 
 ```powershell
-node scripts/prepare-assets.mjs "D:\Git repos\atmosfera"
+node scripts/prepare-assets.mjs "../atmosfera"
 ```
 
 O script lê os originais, sem modificá-los, e produz três tamanhos: 480, 960 e 1440 px. Usa nearest-neighbour na pixel art da cabana e Lanczos nas outras artes. `public/images/manifest.json` registra os arquivos e tamanhos gerados.
