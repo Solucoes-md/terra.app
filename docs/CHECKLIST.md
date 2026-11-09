@@ -32,6 +32,8 @@ Preparação técnica entregue no [PR #6](https://github.com/Solucoes-md/terra.a
 
 ### Ajuste em implementação — atualização automática
 
+**Decisão editorial posterior (09/11/2026, 16:57, via Friday):** publicar somente documentos com `aprovado_para_publicacao=true` no manifesto canônico e aceite explícito do dono. Se a main contiver rascunho, manter a última revisão aprovada fixada por commit/hashes; sem revisão aprovada, o build falha. Falha de rede ou integridade também interrompe o build. A primeira publicação depende do aceite do delta Pages na issue #89 do Atmosfera. Cada revisão nova exige novo aceite; o site não promove rascunho automaticamente.
+
 A issue #4/PR #6 foi ampliada após o pedido de Gabriel, repassado pela Friday em 09/11/2026 às 16:15 (America/Sao_Paulo). A revisão técnica anterior permanece registrada, mas o novo comportamento exige gates e revisão novos. Não considerar a importação manual fixa como entrega final.
 
 - [ ] Site: `npm run build` busca uma única revisão da `main` do Atmosfera, confere manifesto e hashes, gera as três rotas legais e mostra versão, commit e permalink da fonte em cada página; sem cópias manuais versionadas.
