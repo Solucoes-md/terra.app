@@ -40,23 +40,34 @@ Até a URL ser fornecida, os CTAs levam à demonstração da própria página. A
 
 Na mesma configuração estão os links legais e o e-mail de suporte do projeto. Não há cadastro, envio de formulário, analytics nem consulta ao clima ou à localização do visitante.
 
-As páginas do domínio antigo `terra-livewallpaper.pages.dev` não resolveram na verificação. Por isso, o rodapé abre documentos locais em `/documentos/privacidade/index.html`, `/documentos/termos/index.html` e `/documentos/contato/index.html`. Eles estão identificados como documentos de referência do aplicativo: a vigência ainda depende da publicação no Google Play. As datas pendentes estão explicitamente marcadas.
+As páginas do domínio antigo `terra-livewallpaper.pages.dev` não resolveram na verificação. Por isso, o rodapé abre documentos locais em `/documentos/privacidade/index.html`, `/documentos/termos/index.html` e `/documentos/contato/index.html`. Eles estão identificados como documentos de referência do aplicativo: a vigência ainda depende da disponibilização efetiva da versão final do teste, após aprovação e publicação dos textos. As datas pendentes estão explicitamente marcadas.
 
 ## Página de privacidade
 
 Com o servidor de desenvolvimento aberto, acesse [http://127.0.0.1:5173/documentos/privacidade/index.html](http://127.0.0.1:5173/documentos/privacidade/index.html). No preview de produção, use a porta `4173` no mesmo endereço.
 
-A página usa HTML semântico e CSS dedicado, a fonte Geist local e a identidade visual do Terra. O texto completo, o índice com 16 capítulos, os links e o índice recolhível no celular funcionam sem JavaScript. A navegação lateral fica fixa a partir de 1024 px; tabelas viram blocos identificados em telas estreitas. A impressão usa fundo branco e inclui o resumo, os metadados e todos os capítulos. O movimento reduzido desativa a rolagem suave.
+A página usa HTML semântico e CSS dedicado, a fonte Geist local e a identidade visual do Terra. O texto completo, o índice com 12 capítulos, os links e o índice recolhível no celular funcionam sem JavaScript. A navegação lateral fica fixa a partir de 1024 px; tabelas viram blocos identificados em telas estreitas. A impressão usa fundo branco e inclui o resumo, os metadados e todos os capítulos. O movimento reduzido desativa a rolagem suave.
 
-As cópias atuais estão desatualizadas: a privacidade ainda está em **1.1**, com atualização em **29 de setembro de 2026**. Elas foram importadas de `public_html/` do Atmosfera. A fonte canônica atual é [`docs/legal/`](https://github.com/gabzieg/atmosfera/tree/main/docs/legal), com Privacidade **1.22**, Termos **1.12** e Contato **1.10**, conforme a decisão registrada na issue #1. A vigência e a autorização final de publicação permanecem pendentes; aceite de redação não equivale a publicação aprovada.
+As cópias usam o conjunto canônico Privacidade **1.22**, Termos **1.12** e Contato **1.10**, da revisão [`d8ed440d5f12dd9f1cacd110ca0343444183420a`](https://github.com/gabzieg/atmosfera/tree/d8ed440d5f12dd9f1cacd110ca0343444183420a/docs/legal). O estado continua **rascunho para revisão**, `aprovado_para_publicacao=false` e `vigencia=null`. Aceite parcial de redação não autoriza publicação.
 
-O importador existente ainda lê as exportações HTML de `public_html/`, não as fontes Markdown canônicas. Antes de atualizar as cópias deste site, siga a geração e a conferência descritas no README de `docs/legal/` do Atmosfera e verifique as versões e o manifesto. A adequação do importador, a cobertura da hospedagem do site e a revisão das cópias estão pendentes no checklist. Para executar o importador existente sobre um checkout de origem já conferido, a partir da raiz deste site:
+A proveniência pública mínima (repositório, commit, versões, caminhos e SHA-256 das fontes Markdown, HTMLs, modelo e gerador) fica em `scripts/documents-source.json`. O manifesto interno do app não é copiado. Antes de importar, obtenha um checkout da revisão fixada e execute nele a conferência canônica:
+
+```powershell
+python scripts/sincronizar_documentos_legais.py --check
+```
+
+Depois, na raiz deste site:
 
 ```powershell
 node scripts/prepare-documents.mjs "../atmosfera"
+npm run test:documents
 ```
 
-O gerador aplica o layout de privacidade automaticamente, extrai metadados e contato do HTML original e cria o índice a partir dos capítulos numerados. Ele mantém o CSS dedicado e também atualiza as cópias de Termos e Contato. Revise o diff e execute as validações após a importação. Após conferir uma mudança de conteúdo, atualize `tests/fixtures/privacy-source.html` com o HTML de origem antes das adaptações: essa referência permite detectar perda ou alteração involuntária do texto nos testes. Edite a apresentação em `scripts/render-privacy.mjs` e `public/documentos/privacidade/styles.css`; o HTML final é gerado e versionado para funcionar sem acesso ao checkout Android. A revisão do publicador e a definição da vigência continuam necessárias antes do lançamento do app.
+O importador confere o estado e os bytes das três fontes e exportações contra os hashes fixados, além do modelo e gerador canônicos. Recusa incompatibilidade ou hash divergente antes de gravar qualquer página. Não executa scripts da origem nem aceita automaticamente uma nova revisão: uma atualização exige conferir novamente o fluxo canônico, revisar a proveniência e atualizar as fixtures públicas em `tests/fixtures/` com os bytes de origem, sem adaptar essas fixtures.
+
+Somente a apresentação e os destinos `href` entre documentos são adaptados. URLs exibidas no texto, redação, datas e metadados são preservados. A privacidade recebe o layout de `scripts/render-privacy.mjs` e `public/documentos/privacidade/styles.css`; Termos e Contato mantêm o layout canônico com aviso editorial e retorno ao site. Todas as páginas exibem publicação não autorizada, têm `noindex, nofollow` e funcionam sem JavaScript. As cópias geradas são versionadas; o site não precisa do app para rodar.
+
+**Dependência legal para publicar:** a política canônica §1 ainda descreve o site no Google Sites; a referência à Cloudflare em §4/§8 trata da entrega de artes pelo R2, sem cobrir por si a hospedagem desta landing no Pages. A fonte canônica precisa avaliar operação, dados técnicos, retenção e fornecedores do site/domínio antes do aceite final. Este repositório não cria compromissos legais nem altera a redação para supor essa cobertura. A revisão de conteúdo/seções por Willian, a vigência, a aprovação final e a publicação continuam pendentes na issue #4. A correção das dependências vulneráveis preexistentes é acompanhada na issue #5.
 
 ## Verificar
 
@@ -69,7 +80,7 @@ npm run test:e2e
 
 Os testes Playwright verificam 320, 375, 768, 1024 e 1440 px; título em duas linhas; ausência de rolagem horizontal; imagens carregadas; seleção por teclado; menu móvel; prévia de chuva e noite; pausa; movimento reduzido; redimensionamento; e configuração dos CTAs.
 
-Na página de privacidade, verificam também as cinco larguras, índice e âncoras por teclado, leitura sem JavaScript, tabelas responsivas, impressão, recursos locais e preservação do conteúdo na regeneração. Para executar apenas essas verificações, use `npm run test:e2e -- tests/privacy.spec.ts`.
+Na página de privacidade, verificam também as cinco larguras, índice e âncoras por teclado, leitura sem JavaScript, tabelas responsivas, impressão, recursos locais e preservação integral da redação dos três documentos, links locais e recusa de fontes incompatíveis ou alteradas. Para executar apenas essas verificações, use `npm run test:e2e -- tests/privacy.spec.ts`.
 
 No Windows, os testes aproveitam o Google Chrome instalado no caminho padrão. Em outro ambiente, instale o navegador do Playwright com `npx playwright install chromium`. Para usar um executável próprio, configure `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. O servidor local é iniciado automaticamente pelos testes, ou reaproveitado quando já está rodando.
 

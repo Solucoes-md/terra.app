@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contato — Terra</title>
+<meta name="description" content="Contato — Terra — revisão 1.10, contato e informações do Terra.">
+<style>
+  :root{
+    --bg:#ffffff; --fg:#111111; --muted:#5c5c5c; --rule:#e2e2e2;
+    --surface:#f6f6f6; --mark-bg:#ffe9a8; --mark-fg:#3d2f00;
+    --measure:44rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d0d0d; --fg:#f2f2f2; --muted:#a1a1a1; --rule:#2a2a2a;
+      --surface:#171717; --mark-bg:#4a3a00; --mark-fg:#ffe9a8;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d0d0d; --fg:#f2f2f2; --muted:#a1a1a1; --rule:#2a2a2a;
+    --surface:#171717; --mark-bg:#4a3a00; --mark-fg:#ffe9a8;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --fg:#111111; --muted:#5c5c5c; --rule:#e2e2e2;
+    --surface:#f6f6f6; --mark-bg:#ffe9a8; --mark-fg:#3d2f00;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:clamp(1.5rem,5vw,4rem) clamp(1.1rem,5vw,2rem);
+  }
+  main{max-width:var(--measure); margin:0 auto}
+  header{border-bottom:1px solid var(--rule); padding-bottom:1.6rem; margin-bottom:2.4rem}
+  .kicker{
+    font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 .6rem;
+  }
+  h1{font-size:clamp(1.7rem,5.5vw,2.4rem); line-height:1.2; margin:0 0 1rem; font-weight:650}
+  h2{
+    font-size:clamp(1.15rem,3.4vw,1.35rem); font-weight:650; line-height:1.3;
+    margin:3rem 0 .8rem; padding-top:1.4rem; border-top:1px solid var(--rule);
+  }
+  h3{font-size:1.02rem; font-weight:650; margin:2rem 0 .5rem}
+  p,ul,ol{margin:0 0 1rem}
+  ul,ol{padding-left:1.4rem}
+  li{margin:.35rem 0}
+  li>ul{margin:.35rem 0 .35rem}
+  a{color:inherit; text-underline-offset:.18em; text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.88em; background:var(--surface); padding:.1em .35em; border-radius:4px;
+  }
+  strong{font-weight:650}
+  .meta{
+    list-style:none; padding:0; margin:0; color:var(--muted); font-size:.9rem;
+  }
+  .meta li{margin:.15rem 0}
+  .summary{
+    background:var(--surface); border:1px solid var(--rule); border-radius:12px;
+    padding:1.25rem 1.4rem; margin:0 0 1rem;
+  }
+  .summary h2{margin:0 0 .6rem; padding:0; border:0; font-size:1.1rem}
+  .summary p:last-child,.summary ul:last-child{margin-bottom:0}
+  .note{color:var(--muted); font-size:.92rem}
+  .fill{
+    background:var(--mark-bg); color:var(--mark-fg); padding:.05em .3em;
+    border-radius:3px; font-weight:650;
+  }
+  .table-wrap{overflow-x:auto; margin:0 0 1.2rem; border:1px solid var(--rule); border-radius:12px}
+  table{border-collapse:collapse; width:100%; min-width:30rem; font-size:.94rem}
+  th,td{text-align:left; vertical-align:top; padding:.7rem .9rem; border-bottom:1px solid var(--rule)}
+  thead th{background:var(--surface); font-weight:650; white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  table.kv th{width:38%; font-weight:650; background:transparent; white-space:normal}
+  /* Em tela estreita (celular, e a WebView do app é sempre estreita) a tabela
+     chave/valor vira blocos empilhados: com min-width:30rem ela era cortada
+     na horizontal e o valor ficava ilegível. */
+  @media (max-width:34rem){
+    table.kv{min-width:0}
+    table.kv th,table.kv td{display:block; width:auto}
+    table.kv th{padding-bottom:.15rem; border-bottom:0}
+    table.kv td{padding-top:0}
+  }
+  footer{
+    margin-top:3.5rem; padding-top:1.4rem; border-top:1px solid var(--rule);
+    color:var(--muted); font-size:.9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+<header><h1>Contato — Terra</h1><ul class="meta"><li><strong>Página pública:</strong> <a href="https://sites.google.com/view/terra-live-wallpaper/contato">https://sites.google.com/view/terra-live-wallpaper/contato</a></li><li><strong>Versão do documento:</strong> 1.10</li><li><strong>Última atualização:</strong> 7 de novembro de 2026</li><li><strong>Estado:</strong> Documento em revisão; ainda não aprovado para publicação definitiva.</li><li><strong>Aplica-se a:</strong> Atendimento do Terra e próximo pacote (código de versão 8), em preparação para teste fechado restrito a adultos no Brasil.</li><li><strong>Vigência:</strong> A definir na disponibilização efetiva da versão final do teste, após aprovação e publicação destes textos, com registro da data real. Esta revisão não retroage sobre compras anteriores nem suspende a transparência dos tratamentos realizados antes desse evento.</li></ul></header>
+<section class="summary"><h2>Resumo</h2><p>O controlador responsável pelo Terra e ponto focal de comunicação com titulares e com a ANPD é <strong>Rafael Huppes, pessoa física</strong>. Utilize o canal único <a href="mailto:suporteterrabr@gmail.com">suporteterrabr@gmail.com</a> para suporte técnico, dúvidas sobre compras/reembolsos e solicitações de privacidade e direitos sobre dados pessoais (LGPD).</p>
+<p>Na operação de teste fechado abrangida por esta revisão, o responsável pelo Terra está dispensado de indicar encarregado por seu enquadramento como agente de tratamento de pequeno porte, conforme o art. 11 da <a href="https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-2-de-27-de-janeiro-de-2022">Resolução CD/ANPD nº 2/2022</a>. Rafael Huppes permanece como controlador e responsável pelo canal de atendimento aos titulares. O enquadramento será reavaliado se houver mudança no público, na escala ou nas operações de tratamento.</p></section>
+<h2>1. Suporte técnico, relato de problemas e compras</h2>
+<p>Para atendimento mais ágil sobre funcionamento do aplicativo ou cenários:</p>
+<ul><li><strong>Pelo botão "Reportar problema" no aplicativo:</strong> ao marcar os sintomas na tela de um cenário, o Terra abre o seu aplicativo de e-mail externo com um rascunho pré-preenchido contendo os sintomas selecionados e um bloco técnico (<code>cena</code>, <code>arte</code>, <code>efeito</code>/estilo ativo, códigos dos <code>sintomas</code>, versão do <code>app</code>, fabricante/modelo do <code>aparelho</code> e versão do <code>Android</code>). Nenhum dado é enviado automaticamente em segundo plano: você pode revisar, editar ou cancelar a mensagem antes de enviá-la.</li><li><strong>Por e-mail direto:</strong> informe modelo do aparelho, versão do Android e do app, cenário/variante e o ocorrido. Capturas de tela são opcionais; antes de anexar, remova notificações ou dados pessoais de terceiros.</li><li><strong>Compras e reembolsos:</strong> informe o problema encontrado e, somente se solicitado para localizar a transação na Google Play, o identificador do pedido (<code>GPA....</code>). Nunca envie senhas, dados de cartão de crédito, CPF ou fotos de documentos. Reembolsos podem ser solicitados diretamente na <a href="https://support.google.com/googleplay/answer/2479637?hl=pt-BR">Google Play</a> ou pelo nosso suporte; o fluxo da plataforma não substitui nosso dever de atendimento ao consumidor.</li></ul>
+<h2>2. Exercício de direitos do titular (LGPD)</h2>
+<p>Para solicitações baseadas nos <strong>arts. 18 e 19 da Lei nº 13.709/2018 (LGPD)</strong> — incluindo confirmação da existência de tratamento, acesso aos dados, correção, eliminação de registros de atendimento, informações sobre compartilhamento com fornecedores ou revogação de autorização — escreva para <a href="mailto:suporteterrabr@gmail.com">suporteterrabr@gmail.com</a> indicando no assunto ou no texto tratar-se de <strong>solicitação de privacidade/LGPD</strong>.</p>
+<ul><li><strong>Dados mínimos:</strong> descreva o pedido e, quando possível, escreva a partir do endereço usado no atendimento ou na participação no teste. Não é necessário ter chamado de suporte anterior para exercer seus direitos. Não envie cópias de documentos oficiais; eventual confirmação proporcional de titularidade só será solicitada se houver dúvida fundada para evitar acesso indevido por terceiros.</li><li><strong>Prazos legais de resposta:</strong> pedidos de confirmação de existência ou de acesso a dados pessoais são respondidos em formato simplificado imediatamente, quando cabível, ou por declaração clara e completa em <strong>até 15 (quinze) dias</strong> contados do requerimento (art. 19, II da LGPD). Demais solicitações seguem os prazos legais pertinentes, distintos do tempo de diagnóstico de suporte técnico comum.</li><li><strong>Escopo:</strong> o pedido pode abranger todos os dados pessoais sob controle do responsável pelo Terra, incluindo atendimento, lista de distribuição do teste, controle separado de maioridade/aceite quando mantido e eventuais outros registros administrativos identificáveis sob sua responsabilidade. A análise não se limita aos e-mails de suporte nem depende de existir conta própria no aplicativo. O atendimento considera os registros existentes, as responsabilidades de cada agente e os requisitos e limites legais de conservação. Limpar dados ou desinstalar o app remove os dados locais, mas não elimina automaticamente e-mails enviados, listas administrativas, histórico de compras na Google Play ou registros de fornecedores. Você pode usar as ferramentas da conta Google para dados sob controle desse serviço, sem perder o canal do Terra para esclarecer seu próprio tratamento e suas responsabilidades. O titular também pode peticionar perante a <a href="https://www.gov.br/anpd">ANPD</a>.</li></ul>
+<h2>3. Tratamento e retenção dos dados do atendimento</h2>
+<p>Recebemos o endereço de e-mail remetente, o conteúdo da mensagem, os campos técnicos do rascunho (quando utilizados) e eventuais anexos enviados voluntariamente. As mensagens são processadas via <strong>Gmail comum/gratuito, do Google</strong>, com acesso restrito ao responsável (<strong>Rafael Huppes</strong>) e a eventual colaborador expressamente autorizado para resolver o chamado. Não utilizamos endereços de suporte para envio de publicidade ou marketing.</p>
+<p>As mensagens e anexos são mantidos pelo prazo de <strong>60 dias após o encerramento do atendimento</strong>, cabendo ao responsável pelo suporte registrar o encerramento e excluir definitivamente mensagens e anexos ao término desse período, inclusive da lixeira e de eventuais cópias locais sob seu controle. A conservação além de 60 dias ocorre apenas de forma restrita e fundamentada quando necessária para cumprimento de obrigação legal ou regulatória (art. 7º, II e art. 16, I da LGPD) ou para exercício regular de direitos em processo judicial, administrativo ou arbitral (art. 7º, VI). Consulte os detalhes completos na <a href="../privacidade/">Política de Privacidade</a> e nos <a href="../termos/">Termos de Uso</a>.</p>
+<p>Está previsto um controle separado de confirmações do teste, com finalidade e regra de conservação próprias: somente confirmação de 18+, aceite, data e referência privada da resposta, sem documento ou nascimento; arquivo protegido no computador do responsável, acesso restrito e descarte no encerramento do teste, salvo necessidade específica justificada. Não se estendem automaticamente os 60 dias do suporte a esse controle. A lista de distribuição no Console permanece distinta, conforme a Política de Privacidade.</p>
+<h2>4. Site e histórico</h2>
+<p>As páginas públicas de documentos são hospedadas no Google Sites e foram declaradas como somente texto e links, sem formulários, vídeos incorporados, anúncios ou analytics próprios adicionados pelo Terra; o Google pode tratar dados técnicos de conexão e segurança conforme sua própria política. As condições específicas das compras durante o período de teste fechado constam nos <a href="../termos/">Termos de Uso</a>.</p>
+<p>Revisão 1.1 de 11/10/2026: canal oficial, responsável, retenção de 60 dias e atendimento de compras/privacidade. Revisão 1.2 de 15/10/2026: preparação no Google Sites e escopo de compras de licença no teste fechado. Revisão 1.3 de 15/10/2026: página concentrada em atendimento, dados e direitos.</p>
+<p>Revisão 1.4 de 15/10/2026: detalhamento dos campos pré-preenchidos na opção "Reportar problema" (<code>enviarRelato</code>), distinção entre chamados de suporte técnico e requisições de direitos do titular (arts. 18 e 19 da LGPD), e explicitação do responsável como ponto focal de comunicação com titulares e com a ANPD.</p>
+<p>Revisão 1.5 de 15/10/2026: conciliação do escopo de adultos/Brasil no teste e distinção entre canal de contato e enquadramento de encarregado, preservado o detalhamento do relato e do atendimento. Sem aprovação ou nova vigência.</p>
+<p>Revisão 1.6 de 15/10/2026: pedidos de direitos abrangem dados identificáveis sob responsabilidade do Terra, incluindo participantes do teste e registros administrativos, sem exigir atendimento anterior. Sem aprovação ou nova vigência.</p>
+<p>Revisão 1.7 de 28/10/2026: identificação do candidato 1.0.5 (código de versão 7) para a nova revisão documental. Mantidos o estado de rascunho, as pendências de avaliação e a vigência a definir; sem aprovação ou comprovação de distribuição.</p>
+<p>Revisão 1.8 de 28/10/2026: explicitação da rotina confirmada pelo responsável para encerramento e exclusão definitiva de mensagens e anexos do suporte após 60 dias, incluindo lixeira e eventuais cópias locais sob seu controle. Sem aprovação ou nova vigência.</p>
+<p>Revisão 1.9 de 28/10/2026: conclusão da avaliação de dispensa de indicação de encarregado para a operação atual de teste fechado, preservando o controlador e o canal de atendimento aos titulares. Superada a pendência de enquadramento; sem aprovação ou nova vigência. Por decisão do Gabriel em 28/10/2026, esta revisão passa a se aplicar ao próximo pacote (código de versão 8), em preparação para o teste fechado no Brasil; a identificação anterior do candidato 7 fica como histórico. <code>versionName</code> ainda não definido; mantidos o rascunho, a aprovação pendente e a vigência a definir.</p>
+<p>Revisão 1.10 de 07/11/2026: proposta editorial sobre o controle mínimo separado de maioridade/aceite e sua regra própria de acesso/descarte; Gmail comum/gratuito e Sites somente texto/links, sem negar tratamento próprio dos serviços. Preservada a rotina de suporte já confirmada e seus limites de comprovação. Evento de vigência previsto para a disponibilização final após aprovação/publicação, sem data inventada, retroatividade ou suspensão da transparência anterior. Mantidos rascunho e ausência de aprovação.</p>
+<footer><p>Terra — Contato — Terra, revisão 1.10. Documento em revisão.</p><p><a href="../privacidade/">Privacidade</a> · <a href="../termos/">Termos</a> · <a href="../contato/">Contato</a></p></footer>
+</main>
+</body>
+</html>
