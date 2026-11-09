@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { readFile } from 'node:fs/promises'
+import { approveFixture } from '../scripts/legal-fixture.mjs'
 
 const privacyPath = '/documentos/privacidade/index.html'
 
@@ -25,7 +26,7 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     await expect(page.locator('.policy-chapter')).toHaveCount(12)
     await expect(page.locator('.policy-meta')).toContainText('1.22')
     await expect(page.locator('.policy-meta')).toContainText('8 de novembro de 2026')
-    await expect(page.locator('.policy-meta')).toContainText('A definir')
+    await expect(page.locator('.policy-meta')).toContainText('2026-12-01')
     await expect(page.locator('#politica')).toContainText('São Paulo, SP')
     await expect(page.locator('body')).not.toContainText('[PREENCHER:')
     if (width >= 1024) {
@@ -179,7 +180,7 @@ for (const slug of ['privacidade', 'termos', 'contato']) {
     const context = await browser.newContext({ javaScriptEnabled: false, baseURL })
     const page = await context.newPage()
     try {
-      const original = await readFile(`tests/fixtures/${slug}-source.html`, 'utf8')
+      const original = approveFixture(await readFile(`tests/fixtures/${slug}-source.html`, 'utf8'))
       await page.setContent(original)
       const sourceMetadata = await page.locator('.meta').textContent()
       const sourceSummary = await page.locator('.summary').textContent()
@@ -204,7 +205,7 @@ for (const slug of ['privacidade', 'termos', 'contato']) {
       }) ?? '')).toBe(normalize(sourceFooter ?? ''))
       const text = await page.locator(slug === 'privacidade' ? '#politica' : 'main').textContent()
       expect(normalize(text ?? '')).toBe(normalize(expected))
-      await expect(page.getByText('Rascunho para revisão. Vigência pendente; publicação não autorizada.', { exact: true })).toBeVisible()
+      await expect(page.getByRole('complementary', { name: 'Proveniência' })).toContainText('Estado canônico: aprovado. Vigência: 2026-12-01.')
       for (const link of await page.locator('a[href]').all()) {
         const href = await link.getAttribute('href') ?? ''
         if (href.startsWith('#')) {
@@ -219,5 +220,29 @@ for (const slug of ['privacidade', 'termos', 'contato']) {
     } finally {
       await context.close()
     }
+  })
+}
+
+test('documentos: proveniência por revisão e rota inexistente sem fallback da landing', async ({ page }) => {
+  for (const slug of ['privacidade', 'termos', 'contato']) {
+    await page.goto(`/documentos/${slug}/index.html`)
+    const provenance = page.getByRole('complementary', { name: 'Proveniência' })
+    await expect(provenance).toContainText('a'.repeat(40))
+    await expect(provenance.getByRole('link', { name: 'Fonte canônica' })).toHaveAttribute('href', new RegExp(`/blob/${'a'.repeat(40)}/docs/legal/`))
+  }
+  const response = await page.request.get('/documentos/inexistente/index.html')
+  expect(response.status()).toBe(404)
+  expect(await response.text()).not.toContain('O clima muda')
+})
+
+for (const slug of ['privacidade', 'termos', 'contato']) {
+  test(`${slug}: URL curta redireciona permanentemente ao documento, sem landing`, async ({ page }) => {
+    const response = await page.request.get(`/${slug}`, { maxRedirects: 0 })
+    expect(response.status()).toBe(301)
+    expect(response.headers().location).toBe(`/documentos/${slug}/index.html`)
+    await page.goto(`/${slug}`)
+    await expect(page).toHaveURL(new RegExp(`/documentos/${slug}/index.html$`))
+    await expect(page.getByRole('complementary', { name: 'Proveniência' })).toContainText('Estado canônico: aprovado.')
+    await expect(page.getByRole('heading', { level: 1 })).not.toHaveText('O clima muda.Sua tela também.')
   })
 }

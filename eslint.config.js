@@ -15,5 +15,5 @@ export default tseslint.config(
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
-  { files: ['scripts/**/*.mjs'], languageOptions: { globals: { process: 'readonly', console: 'readonly', Buffer: 'readonly' } } },
+  { files: ['scripts/**/*.mjs'], languageOptions: { globals: { process: 'readonly', console: 'readonly', Buffer: 'readonly', fetch: 'readonly', TextDecoder: 'readonly', Response: 'readonly', AbortSignal: 'readonly', Uint8Array: 'readonly', setTimeout: 'readonly', clearTimeout: 'readonly' } } },
 )
