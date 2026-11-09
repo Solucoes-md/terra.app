@@ -25,7 +25,7 @@ export function adaptDocument(slug, original) {
   const local = original.replace(/href="(?:\.\.\/|https:\/\/sites\.google\.com\/view\/terra-live-wallpaper\/)(privacidade|termos|contato)\/?"/g,
     (_, target) => `href="../${target}/index.html"`)
   const sourceUrl = `${provenance.repository}/blob/${provenance.commit}/public_html/${slug}/index.html`
-  const notice = `<aside aria-label="Estado editorial" style="padding:20px 24px;background:#202226;color:#f4f5f7;font:14px/1.7 system-ui,sans-serif"><span>Rascunho para revisão. Vigência pendente; publicação não autorizada.</span> <a href="/" style="color:inherit">Voltar ao site</a> · <a href="${sourceUrl}" style="color:inherit">Fonte do documento</a></aside>`
+  const notice = `<aside aria-label="Estado editorial" style="padding:20px 24px;background:#202226;color:#f4f5f7;font:14px/1.7 system-ui,sans-serif">Documento de referência do aplicativo Terra. <span>Rascunho para revisão. Vigência pendente; publicação não autorizada.</span> <a href="/" style="color:inherit">Voltar ao site</a> · <a href="${sourceUrl}" style="color:inherit">Fonte do documento</a></aside>`
   return slug === 'privacidade'
     ? renderPrivacy(local).replace(`${provenance.repository}/blob/main/public_html/privacidade/index.html`, sourceUrl)
     : local.replace('<body>', `<body>${notice}`).replace('</head>', '<meta name="robots" content="noindex, nofollow">\n</head>')
