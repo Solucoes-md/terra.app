@@ -22,9 +22,9 @@ Marcar um item somente quando seu critério estiver atendido. Registrar evidênc
 
 ## Andamento da próxima entrega — 09/11/2026
 
-Preparação técnica em andamento na [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conferir conteúdo contra o app, preparar a revisão das seções por Willian e importar os documentos canônicos com proveniência e testes. Nenhum item abaixo foi marcado como concluído por essa preparação.
+Preparação técnica entregue no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
 
-**Próximo passo:** revisar o PR da issue #4 e suas validações; Willian decide conteúdo e seções. A aprovação legal, a vigência e a publicação continuam pendentes de Gabriel. O [PR #3](https://github.com/Solucoes-md/terra.app/pull/3) foi integrado em 09/11/2026: conta Cloudflare e domínio conferidos; isso não configura nem publica Pages.
+**Próximo passo:** Willian revisar a tabela de seções e decisões no PR #6; adequar a hospedagem na fonte legal e corrigir as dependências da issue #5 antes de publicar. A aprovação legal, a vigência e a publicação continuam pendentes de Gabriel. O [PR #3](https://github.com/Solucoes-md/terra.app/pull/3) foi integrado em 09/11/2026: conta Cloudflare e domínio conferidos; isso não configura nem publica Pages.
 
 **Dependência legal conferida:** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
 
@@ -40,7 +40,7 @@ Preparação técnica em andamento na [issue #4](https://github.com/Solucoes-md/
 | [ ] | Revisar acessibilidade e interação | Site | Testes existentes e revisão manual cobrem celular e desktop, teclado, foco, menu, pausa, movimento reduzido, imagens e ausência de rolagem horizontal; nenhuma regressão pendente. |
 | [ ] | Entregar por PR | Site; revisão de Willian | Diff revisado e aprovado antes do merge; sem dados pessoais ou segredos; preservar a stack e os testes existentes. |
 
-Situação da análise de 09/11/2026, antes deste PR de documentação: typecheck, lint e build passaram; Playwright não concluiu e foi interrompido. Isso não atende ao aceite de testes da versão candidata.
+Histórico da análise inicial de 09/11/2026: Playwright não concluiu e foi interrompido. A entrega do PR #6 substitui essa evidência para a candidata técnica: em `66a547a`, typecheck, lint e build passaram, com 3 testes de integridade/importação e 23 Playwright aprovados. O relatório do PR registra controle negativo das guardas de hash e compatibilidade. O aceite final de conteúdo e publicação segue pendente.
 
 ## 2. Conteúdo e seções
 
@@ -63,7 +63,7 @@ Situação da análise de 09/11/2026, antes deste PR de documentação: typechec
 | [ ] | Validar fidelidade e apresentação | Site | Comparação de conteúdo com a revisão canônica sem perdas; links internos corretos; Playwright de privacidade e demais verificações passam; leitura sem JavaScript, no celular e impressão conferidas. |
 | [ ] | Encerrar metadados pendentes para publicação | Gabriel decide; App Atmosfera registra; Site sincroniza | Autorização de publicação, vigência real, versão do app e URLs finais registradas no fluxo canônico; manifesto coerente e cópias regeneradas/conferidas. Não inferir vigência pela data do PR nem pelo aceite parcial da redação. |
 
-**Estado atual:** o site ainda contém Privacidade 1.1 e Termos 1.0 e usa exportações antigas. O importador `scripts/prepare-documents.mjs` lê `public_html/`. No Atmosfera, o README de `docs/legal/` descreve a geração por `python scripts/sincronizar_documentos_legais.py` e a conferência com `--check`. Consultar essas instruções na revisão escolhida antes de importar; este checklist não autoriza publicar rascunhos.
+**Estado da candidata do PR #6:** Privacidade 1.22, Termos 1.12 e Contato 1.10 da revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a`, sem alterar a redação canônica. O importador confere fontes Markdown, exportações, modelo e gerador contra os hashes de `scripts/documents-source.json`, recusando incompatibilidades antes de gravar. O relatório registra a conferência canônica por `python3 scripts/sincronizar_documentos_legais.py --check`. A cobertura de Pages, a vigência e a aprovação de publicação permanecem pendentes; este checklist não autoriza publicar rascunhos.
 
 Rotas que devem ser preservadas e verificadas no domínio final:
 
@@ -101,4 +101,4 @@ Executar na ordem abaixo. Não retirar o endereço atual antes de confirmar que 
 
 ## Evidências e manutenção
 
-Registrar o andamento na issue #1 e nos PRs correspondentes. Para cada etapa concluída, indicar o item, quem confirmou, a data e a evidência pública. Atualizações de catálogo, preços (se adotados), documentos ou URLs devem passar novamente pelos critérios afetados antes de publicar. Este PR documenta o trabalho; não compra domínio, cria contas, publica o site ou altera o Console.
+Registrar o andamento na issue #1 e nos PRs correspondentes. Para cada etapa concluída, indicar o item, quem confirmou, a data e a evidência pública. Atualizações de catálogo, preços (se adotados), documentos ou URLs devem passar novamente pelos critérios afetados antes de publicar. O checklist acompanha preparação e aceite; não autoriza compra, criação de contas, publicação ou alteração do Console.
