@@ -30,9 +30,11 @@ Preparação técnica entregue no [PR #6](https://github.com/Solucoes-md/terra.a
 
 **Pendência de dependências:** a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) registra os alertas preexistentes encontrados por `npm audit --json` em 09/11/2026 no commit `c2fe470`: correção e conferência antes da publicação, separadas da importação legal.
 
-### Ajuste em implementação — atualização automática
+### Atualização automática — entrega técnica em revisão
 
 **Decisão editorial posterior (09/11/2026, 16:57, via Friday):** publicar somente documentos com `aprovado_para_publicacao=true` no manifesto canônico e aceite explícito do dono. Se a main contiver rascunho, manter a última revisão aprovada fixada por commit/hashes; sem revisão aprovada, o build falha. Falha de rede ou integridade também interrompe o build. A primeira publicação depende do aceite do delta Pages na issue #89 do Atmosfera. Cada revisão nova exige novo aceite; o site não promove rascunho automaticamente.
+
+Entrega automática no PR #6, commit `90f7f97`: typecheck/lint e 19 testes Node + 27 Playwright aprovados em 09/11/2026. Build público bloqueado corretamente por `main` rascunho e pin `null`; `dist` removido. Ainda sem gate completo, merge ou publicação. URLs curtas `/privacidade`, `/termos` e `/contato` têm regras 301 para as rotas longas e foram conferidas em preview local; Pages real segue pendente.
 
 A issue #4/PR #6 foi ampliada após o pedido de Gabriel, repassado pela Friday em 09/11/2026 às 16:15 (America/Sao_Paulo). A revisão técnica anterior permanece registrada, mas o novo comportamento exige gates e revisão novos. Não considerar a importação manual fixa como entrega final.
 
@@ -76,7 +78,7 @@ Histórico da análise inicial de 09/11/2026: Playwright não concluiu e foi int
 | [ ] | Validar fidelidade e apresentação | Site | Comparação de conteúdo com a revisão canônica sem perdas; links internos corretos; Playwright de privacidade e demais verificações passam; leitura sem JavaScript, no celular e impressão conferidas. |
 | [ ] | Encerrar metadados pendentes para publicação | Gabriel decide; App Atmosfera registra; Site sincroniza | Autorização de publicação, vigência real, versão do app e URLs finais registradas no fluxo canônico; manifesto coerente e cópias regeneradas/conferidas. Não inferir vigência pela data do PR nem pelo aceite parcial da redação. |
 
-**Estado da candidata do PR #6:** Privacidade 1.22, Termos 1.12 e Contato 1.10 da revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a`, sem alterar a redação canônica. O importador confere fontes Markdown, exportações, modelo e gerador contra os hashes de `scripts/documents-source.json`, recusando incompatibilidades antes de gravar. O relatório registra a conferência canônica por `python3 scripts/sincronizar_documentos_legais.py --check`. A cobertura de Pages, a vigência e a aprovação de publicação permanecem pendentes; este checklist não autoriza publicar rascunhos.
+**Estado da candidata do PR #6:** Privacidade 1.22, Termos 1.12 e Contato 1.10 da revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a`, sem alterar a redação canônica. A importação fixa anterior foi substituída pelo build automático: valida fontes Markdown e HTML contra manifesto do mesmo SHA; `scripts/documents-source.json` e os HTMLs manuais foram removidos no novo escopo. O pin `scripts/legal-approved.json` continua nulo até receber evidência real de conjunto aprovado. O relatório registra a conferência canônica por `python3 scripts/sincronizar_documentos_legais.py --check`. A cobertura de Pages, a vigência e a aprovação de publicação permanecem pendentes; este checklist não autoriza publicar rascunhos.
 
 Rotas que devem ser preservadas e verificadas no domínio final:
 
