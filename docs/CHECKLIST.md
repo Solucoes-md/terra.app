@@ -20,6 +20,14 @@ Escopo da [issue #1](https://github.com/Solucoes-md/terra.app/issues/1), baseado
 
 Marcar um item somente quando seu critério estiver atendido. Registrar evidência pública no PR ou na issue (commit, resultado de validação ou URL); evidência que contenha dados pessoais permanece fora do repositório. Itens condicionais só podem ser encerrados como não aplicáveis com justificativa registrada.
 
+## Andamento da próxima entrega — 09/11/2026
+
+Preparação técnica em andamento na [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conferir conteúdo contra o app, preparar a revisão das seções por Willian e importar os documentos canônicos com proveniência e testes. Nenhum item abaixo foi marcado como concluído por essa preparação.
+
+**Próximo passo:** revisar o PR da issue #4 e suas validações; Willian decide conteúdo e seções. A aprovação legal, a vigência e a publicação continuam pendentes de Gabriel. O [PR #3](https://github.com/Solucoes-md/terra.app/pull/3) corrige separadamente a conta Cloudflare e o estado do domínio e ainda aguarda integração.
+
+**Dependência legal conferida:** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
+
 ## 1. Base e qualidade
 
 | Estado | Entrega | Responsável | Critério de pronto |
