@@ -9,7 +9,7 @@ Escopo da [issue #1](https://github.com/Solucoes-md/terra.app/issues/1), baseado
 - Sem analytics, cookies ou rastreio do visitante.
 - Servir Privacidade, Termos e Contato pelo próprio site. A fonte canônica é [`gabzieg/atmosfera/docs/legal/`](https://github.com/gabzieg/atmosfera/tree/main/docs/legal).
 - Conjunto com redação aceita: Privacidade 1.22, Termos 1.12 e Contato 1.10. Vigência ainda pendente. O manifesto consultado ainda registra `aprovado_para_publicacao=false`; o aceite da redação não encerra as pendências de publicação.
-- Domínio escolhido: `terrawallpaper.com.br`, no Registro.br, na conta do Gabriel. Hospedagem: Cloudflare Pages; DNS: Cloudflare, também na conta dele. Confirmar o estado operacional nas etapas abaixo.
+- Domínio escolhido: `terrawallpaper.com.br`, no Registro.br, na conta do Gabriel. Hospedagem: Cloudflare Pages; DNS: Cloudflare, na conta Cloudflare do Rafael. Confirmar o estado operacional nas etapas abaixo.
 - Site completo antes da publicação do app em produção, sem versão provisória. A URL da ficha pública do Google Play entra no botão quando o app for publicado; até lá, manter a demonstração local.
 - Trocar a URL da política no Google Play Console e retirar o Google Sites somente depois de o novo site estar no ar e verificado.
 - Repositório público: não incluir dados pessoais, credenciais, tokens, informações de contas ou comprovantes privados. Compra de domínio, criação de contas e publicação cabem a Gabriel. Mudanças no código e na documentação passam por PR, nunca diretamente na `main`.
@@ -65,9 +65,9 @@ Rotas que devem ser preservadas e verificadas no domínio final:
 
 | Estado | Entrega | Responsável | Critério de pronto |
 | --- | --- | --- | --- |
-| [ ] | Confirmar domínio e conta | Gabriel | Confirmar registro e controle de `terrawallpaper.com.br` no Registro.br e conta Cloudflare; manter comprovantes e dados de acesso fora do Git. |
+| [x] | Confirmar domínio e conta | Gabriel | Confirmar registro e controle de `terrawallpaper.com.br` no Registro.br e conta Cloudflare; manter comprovantes e dados de acesso fora do Git. Verificado em 09/11/2026: o Registro.br delega o domínio a `isla.ns.cloudflare.com` e `martin.ns.cloudflare.com` e a zona responde na Cloudflare; ainda sem registros de site (Pages não criado). |
 | [x] | Habilitar administrador do repositório | Willian | Repositório transferido para `Solucoes-md/terra.app`; `gabzieg` e `uWillianG` com papel `admin`, verificado em 09/11/2026. |
-| [ ] | Escolher e configurar o método de deploy | Gabriel; Site fornece build | Escolher integração GitHub ou upload direto. Na integração, autorizar a Cloudflare para `Solucoes-md/terra.app`, respeitando permissões da organização. No upload, gerar `dist/` de commit aprovado e usar Wrangler na conta do Gabriel; registrar commit e deploy. |
+| [ ] | Escolher e configurar o método de deploy | Gabriel; Site fornece build | Escolher integração GitHub ou upload direto. Na integração, autorizar a Cloudflare para `Solucoes-md/terra.app`, respeitando permissões da organização. No upload, gerar `dist/` de commit aprovado e usar Wrangler na conta Cloudflare do Rafael; registrar commit e deploy. |
 | [ ] | Configurar Pages | Gabriel; Site documenta suporte | Raiz do projeto: raiz do repositório; build `npm run build`; saída `dist`; Node.js compatível (24 ou superior). Se usar integração Git, produção a partir de `main` e publicação inicial só com o conteúdo aprovado. Nenhuma credencial no repositório. |
 | [ ] | Configurar DNS e domínio no Pages | Gabriel | Zona na Cloudflare, nameservers configurados no Registro.br e domínio adicionado ao projeto Pages; resolução e certificado HTTPS válidos em `terrawallpaper.com.br`. Se adotar `www`, definir e testar redirecionamento para a URL canônica. |
 | [ ] | Conferir configurações de privacidade da hospedagem | Gabriel; Site verifica rede | Sem Web Analytics, scripts de rastreio ou desafios que exijam login nas páginas legais; tratamento técnico da hospedagem consistente com a política aprovada. |

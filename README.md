@@ -4,7 +4,7 @@ Landing page em português brasileiro do **Terra**, aplicativo Android de papéi
 
 O site é um projeto independente. Conteúdo e artes vieram do [projeto Atmosfera](https://github.com/gabzieg/atmosfera); nenhuma alteração no aplicativo Android é necessária para executar esta página.
 
-O [checklist de conclusão e publicação](docs/CHECKLIST.md) reúne o escopo, os responsáveis, os critérios de pronto e as dependências do app. O destino definido é Cloudflare Pages em `terrawallpaper.com.br`, na conta do Gabriel. Alterações são entregues por PR.
+O [checklist de conclusão e publicação](docs/CHECKLIST.md) reúne o escopo, os responsáveis, os critérios de pronto e as dependências do app. O destino definido é Cloudflare Pages em `terrawallpaper.com.br`, com o domínio no Registro.br na conta do Gabriel e a Cloudflare na conta do Rafael. Alterações são entregues por PR.
 
 ## Executar localmente
 
