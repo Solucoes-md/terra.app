@@ -24,7 +24,7 @@ Marcar um item somente quando seu critério estiver atendido. Registrar evidênc
 
 Preparação técnica integrada no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
 
-**Próximo passo:** integrar o [PR #8](https://github.com/Solucoes-md/terra.app/pull/8), correção da issue #5, após revisão final. Em seguida, Gabriel configura Pages, Deploy Hook e secret com a Friday; verificar domínio, HTTPS, três rotas curtas e atualização real após deploy. PR #6 integrado em `703f632`; conteúdo de Willian segue para PRs posteriores. Nenhum deploy realizado.
+**Próximo passo:** Gabriel configura Pages, Deploy Hook e secret com a Friday, após integração do [PR #8](https://github.com/Solucoes-md/terra.app/pull/8) (correção da issue #5); verificar domínio, HTTPS, três rotas curtas e atualização real após deploy. PR #6 integrado em `703f632`; conteúdo de Willian segue para PRs posteriores. Nenhum deploy realizado.
 
 **Dependência legal anterior (histórico):** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
 
