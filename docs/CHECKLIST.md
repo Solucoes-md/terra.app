@@ -24,7 +24,7 @@ Marcar um item somente quando seu critério estiver atendido. Registrar evidênc
 
 Preparação técnica integrada no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
 
-**Próximo passo:** Gabriel configura Pages, Deploy Hook e secret com a Friday, após integração do [PR #8](https://github.com/Solucoes-md/terra.app/pull/8) (correção da issue #5); verificar domínio, HTTPS, três rotas curtas e atualização real após deploy. PR #6 integrado em `703f632`; conteúdo de Willian segue para PRs posteriores. Nenhum deploy realizado.
+**Próximo passo:** revisar os itens manuais ainda abertos (acessibilidade, conteúdo de Willian e configuração de privacidade), conferir correspondência app/Console no Atmosfera e só então planejar a retirada do Google Sites. Site publicado e PR #9 integrado; não repetir configuração ou deploy já concluídos.
 
 **Dependência legal anterior (histórico):** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
 
@@ -46,6 +46,10 @@ A issue #4/PR #6 foi ampliada após o pedido de Gabriel, repassado pela Friday e
 - [ ] App Atmosfera: disparar o Deploy Hook quando as fontes legais mudarem, no fluxo mantido pela lead daquele projeto; conferir atualização pública efetiva, não somente disparo aceito.
 - [ ] Gabriel / App Atmosfera: registrar vigência e metadados na fonte canônica, conforme decisão real; o site preserva o estado recebido e não inventa aprovação.
 - [ ] Antes de tornar Atmosfera privado após o lançamento: configurar token com leitura mínima para o build. A consulta anônima deixará de funcionar; guardar token somente no ambiente de build, sem expor em página, log ou repositório.
+
+### Publicação conferida — 10/11/2026
+
+PRs #6/#7/#8/#9 integrados; main `23dc4bc`. Correção da issue #5 integrada em `c4d96c8`; audit datado em `d485b71` com zero vulnerabilidades e trava no build. Fonte legal e pin `29a312c9`, manifesto SHA256 `5ed86c3f996d11a6e27882bad625dce1b1cd1ed12106332cd64a48ce35d16474`, vigência `2026-11-10`, versões 1.23/1.13/1.11. [Evidência final do PR #9](https://github.com/Solucoes-md/terra.app/pull/9#issuecomment-6771730827): check Pages SUCCESS no SHA do merge, três rotas curtas e provenance HTTP200 por curl/HTTPS padrão, SHA/versões/data corretos. Cliente Python recebeu403; propagação e acessibilidade universais não foram alegadas. Atmosfera #109 encerrada; #89 mantém correspondência app/Console. Nenhum POST manual, alteração de conta ou secret pela lead. As caixas abaixo que exigem conferências mais amplas continuam abertas, sem apagar pendências por ter havido deploy.
 
 ## 1. Base e qualidade
 
