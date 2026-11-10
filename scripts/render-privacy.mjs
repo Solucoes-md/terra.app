@@ -42,7 +42,7 @@ export function renderPrivacy(html) {
     .replace(/<section class="summary">[\s\S]*?<\/section>/, '')
     .replace(/<footer>[\s\S]*?<\/footer>/, '')
     .trim()
-    .replaceAll('São Paulo (RS, Brasil)', 'São Paulo (SP, Brasil)')
+
   const chapters = [...content.matchAll(/<h2>(\d+)\.\s*([^<]+)<\/h2>/g)]
   if (!chapters.length || chapters.some((chapter, index) => Number(chapter[1]) !== index + 1)) {
     throw new Error('Os capítulos da política precisam ter numeração consecutiva a partir de 1.')
@@ -64,7 +64,7 @@ export function renderPrivacy(html) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0D0E10">
   <meta name="description" content="${escapeAttribute(description)}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="noindex, nofollow">
   <meta property="og:title" content="Política de Privacidade — Terra">
   <meta property="og:description" content="${escapeAttribute(description)}">
   <meta property="og:type" content="website">
@@ -74,7 +74,7 @@ export function renderPrivacy(html) {
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/documentos/privacidade/styles.css">
   <!-- Gerado por scripts/prepare-documents.mjs a partir de public_html/privacidade/index.html do Atmosfera.
-       Adaptações de apresentação, links locais, datas pendentes e correção de São Paulo (RS) para (SP).
+       Adaptações somente de apresentação e destinos de navegação local; redação preservada.
        O conteúdo do projeto de origem deve ser atualizado antes de importar uma nova revisão. -->
 </head>
 <body>
@@ -97,7 +97,7 @@ export function renderPrivacy(html) {
       <ul class="policy-meta">${metadata}</ul>
       <aside class="publication-notice" aria-label="Vigência do documento">
         <span class="notice-mark" aria-hidden="true"></span>
-        <div><p>Documento de referência do aplicativo Terra.</p><p>A vigência de lançamento ainda será definida pelo publicador.</p></div>
+        <div><p>Documento de referência do aplicativo Terra.</p><p>Rascunho para revisão. Vigência pendente; publicação não autorizada.</p></div>
       </aside>
     </section>
     <div class="policy-layout legal-container">

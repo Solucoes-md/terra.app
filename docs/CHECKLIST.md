@@ -8,9 +8,9 @@ Escopo da [issue #1](https://github.com/Solucoes-md/terra.app/issues/1), baseado
 - Apresentar a Willian tudo que já foi construído; Willian decide o conteúdo e as seções finais.
 - Sem analytics, cookies ou rastreio do visitante.
 - Servir Privacidade, Termos e Contato pelo próprio site. A fonte canônica é [`gabzieg/atmosfera/docs/legal/`](https://github.com/gabzieg/atmosfera/tree/main/docs/legal).
-- Conjunto com redação aceita: Privacidade 1.22, Termos 1.12 e Contato 1.10. Vigência ainda pendente. O manifesto consultado ainda registra `aprovado_para_publicacao=false`; o aceite da redação não encerra as pendências de publicação.
+- Conjunto Pages aprovado e integrado no Atmosfera em `916e4340b363fb84b706539939a94ae33d67e99a`: Privacidade 1.23, Termos 1.13 e Contato 1.11, manifesto `aprovado_para_publicacao=true`. [Aceite editorial público](https://github.com/gabzieg/atmosfera/pull/110#issuecomment-6750038090) conferido em 10/11/2026. Vigência e versão do app permanecem nulas até os eventos reais; merge não comprova publicação.
 - Domínio escolhido: `terrawallpaper.com.br`, no Registro.br, na conta do Gabriel. Hospedagem: Cloudflare Pages; DNS: Cloudflare, na conta Cloudflare do Rafael. Confirmar o estado operacional nas etapas abaixo.
-- Site completo antes da publicação do app em produção, sem versão provisória. A URL da ficha pública do Google Play entra no botão quando o app for publicado; até lá, manter a demonstração local.
+- Pedido posterior de Gabriel em 09/11/2026, repassado pela Friday: publicar o site hoje com as páginas legais referenciadas à revisão atual do Atmosfera; substitui a exigência de versão completa antes da publicação. Execução e configuração de produção continuam com o dono. A URL da ficha pública do Google Play entra no botão quando o app for publicado; até lá, manter a demonstração local.
 - Trocar a URL da política no Google Play Console e retirar o Google Sites somente depois de o novo site estar no ar e verificado.
 - Repositório público: não incluir dados pessoais, credenciais, tokens, informações de contas ou comprovantes privados. Compra de domínio, criação de contas e publicação cabem a Gabriel. Mudanças no código e na documentação passam por PR, nunca diretamente na `main`.
 
@@ -20,17 +20,44 @@ Escopo da [issue #1](https://github.com/Solucoes-md/terra.app/issues/1), baseado
 
 Marcar um item somente quando seu critério estiver atendido. Registrar evidência pública no PR ou na issue (commit, resultado de validação ou URL); evidência que contenha dados pessoais permanece fora do repositório. Itens condicionais só podem ser encerrados como não aplicáveis com justificativa registrada.
 
+## Andamento da próxima entrega — 09/11/2026
+
+Preparação técnica entregue no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
+
+**Próximo passo:** integrar o PR #6 após revisão final; corrigir a issue #5 antes de publicar. Gabriel configura Pages, Deploy Hook e secret com a Friday; a operação real e o domínio serão verificados após o deploy. Revisão editorial de Willian segue para PRs posteriores, sem bloquear esta publicação.
+
+**Dependência legal anterior (histórico):** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
+
+**Pendência de dependências:** a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) registra os alertas preexistentes encontrados por `npm audit --json` em 09/11/2026 no commit `c2fe470`: correção e conferência antes da publicação, separadas da importação legal.
+
+### Atualização automática — gate final aprovado
+
+**Decisão editorial posterior (09/11/2026, 16:57, via Friday):** publicar somente documentos com `aprovado_para_publicacao=true` no manifesto canônico e aceite explícito do dono. Se a main contiver rascunho, manter a última revisão aprovada fixada por commit/hashes; sem revisão aprovada, o build falha. Falha de rede ou integridade também interrompe o build. A primeira publicação depende do aceite do delta Pages na issue #89 do Atmosfera. Cada revisão nova exige novo aceite; o site não promove rascunho automaticamente.
+
+Histórico da entrega automática no PR #6, commit `90f7f97`: typecheck/lint e 19 testes Node + 27 Playwright aprovados em 09/11/2026. Build público bloqueado corretamente por `main` rascunho e pin `null`; `dist` removido. Ainda sem gate completo, merge ou publicação. URLs curtas `/privacidade`, `/termos` e `/contato` têm regras 301 para as rotas longas e foram conferidas em preview local; Pages real segue pendente.
+
+**Gate final (10/11/2026):** em `a4a5d59`, typecheck, lint, build público e `npm run test:e2e` aprovados (19 Node + 27 Playwright). Fonte pública `916e434`, versões 1.23/1.13/1.11; pin real preenchido. Preview do artefato real conferido sem JavaScript, 301→200 nas três URLs curtas. Revisão final da lead aproveita essa prova do mesmo commit; Pages real e publicação ainda não executados.
+
+A issue #4/PR #6 foi ampliada após o pedido de Gabriel, repassado pela Friday em 09/11/2026 às 16:15 (America/Sao_Paulo). A revisão técnica anterior permanece registrada, mas o novo comportamento exige gates e revisão novos. Não considerar a importação manual fixa como entrega final.
+
+- [x] Site: `npm run build` busca uma única revisão da `main` do Atmosfera, confere manifesto e hashes, gera as três rotas legais e mostra versão, commit e permalink da fonte em cada página; sem cópias manuais versionadas.
+- [x] Site: falha de rede, manifesto ou hash interrompe o build, sem publicar cópia antiga silenciosamente; controles negativos e caso de atualização válida comprovados.
+- [ ] Gabriel: configurar integração GitHub do Pages com a `main` do Terra, build `npm run build`, saída `dist` e Node.js 24; criar Deploy Hook na conta Cloudflare do Rafael e guardar o secret fora do Git.
+- [ ] App Atmosfera: disparar o Deploy Hook quando as fontes legais mudarem, no fluxo mantido pela lead daquele projeto; conferir atualização pública efetiva, não somente disparo aceito.
+- [ ] Gabriel / App Atmosfera: registrar vigência e metadados na fonte canônica, conforme decisão real; o site preserva o estado recebido e não inventa aprovação.
+- [ ] Antes de tornar Atmosfera privado após o lançamento: configurar token com leitura mínima para o build. A consulta anônima deixará de funcionar; guardar token somente no ambiente de build, sem expor em página, log ou repositório.
+
 ## 1. Base e qualidade
 
 | Estado | Entrega | Responsável | Critério de pronto |
 | --- | --- | --- | --- |
 | [ ] | Executar o site em um checkout limpo | Site | Instalar com `npm ci` e abrir `npm run dev`, usando Node.js 24 ou superior, sem depender de outro checkout para servir imagens ou documentos. |
-| [ ] | Validar a versão candidata | Site | `npm run typecheck`, `npm run lint`, `npm run build` e `npm run test:e2e` terminam com sucesso no mesmo commit; registrar resultados no PR. No ambiente sem navegador, instalar Chromium com `npx playwright install chromium` antes dos testes. |
-| [ ] | Manter instruções portáveis | Site | README contém clone, instalação, execução, build, testes e caminhos relativos ou configuráveis, sem diretórios de máquina pessoal. Conferir os comandos a partir da raiz do checkout. |
+| [x] | Validar a versão candidata | Site | `npm run typecheck`, `npm run lint`, `npm run build` e `npm run test:e2e` terminam com sucesso no mesmo commit; registrar resultados no PR. No ambiente sem navegador, instalar Chromium com `npx playwright install chromium` antes dos testes. |
+| [x] | Manter instruções portáveis | Site | README contém clone, instalação, execução, build, testes e caminhos relativos ou configuráveis, sem diretórios de máquina pessoal. Conferir os comandos a partir da raiz do checkout. |
 | [ ] | Revisar acessibilidade e interação | Site | Testes existentes e revisão manual cobrem celular e desktop, teclado, foco, menu, pausa, movimento reduzido, imagens e ausência de rolagem horizontal; nenhuma regressão pendente. |
-| [ ] | Entregar por PR | Site; revisão de Willian | Diff revisado e aprovado antes do merge; sem dados pessoais ou segredos; preservar a stack e os testes existentes. |
+| [ ] | Entregar por PR | Site; revisão técnica da lead | Para esta publicação, Gabriel dispensou a espera por Willian; decisões editoriais dele seguem abertas para PRs posteriores. Diff revisado e aprovado pela lead antes do merge; sem dados pessoais ou segredos; preservar a stack e os testes existentes. |
 
-Situação da análise de 09/11/2026, antes deste PR de documentação: typecheck, lint e build passaram; Playwright não concluiu e foi interrompido. Isso não atende ao aceite de testes da versão candidata.
+Histórico da análise inicial de 09/11/2026: Playwright não concluiu e foi interrompido. A entrega do PR #6 substitui essa evidência para a candidata técnica: em `66a547a`, typecheck, lint e build passaram, com 3 testes de integridade/importação e 23 Playwright aprovados. O relatório do PR registra controle negativo das guardas de hash e compatibilidade. O aceite final de conteúdo e publicação segue pendente.
 
 ## 2. Conteúdo e seções
 
@@ -47,13 +74,13 @@ Situação da análise de 09/11/2026, antes deste PR de documentação: typechec
 
 | Estado | Entrega | Responsável | Critério de pronto |
 | --- | --- | --- | --- |
-| [ ] | Fixar a revisão canônica | App Atmosfera fornece; Site registra | Registrar commit de origem, versões e hashes do manifesto de `docs/legal/`; usar PRIVACIDADE.md 1.22, TERMOS.md 1.12 e CONTATO.md 1.10 ou revisão posterior explicitamente aprovada. Não usar históricos de 05/10 como fonte vigente. |
-| [ ] | Confirmar cobertura do próprio site | App Atmosfera redige; Gabriel aprova; Site confere | Documento descreve também hospedagem Cloudflare Pages, tratamento técnico associado à hospedagem, contato e ausência de analytics/cookies/rastreio. Lacunas voltam à fonte canônica; não inventar compromissos nem alterar só a cópia do site. |
-| [ ] | Adequar a importação e substituir cópias antigas | Site | Fluxo usa fontes canônicas ou exportações geradas e conferidas a partir delas, com versões/hashes rastreáveis. Atualizar o importador que hoje lê `public_html/`, suas instruções e a fixture de privacidade; substituir os três HTMLs em `public/documentos/` preservando o conteúdo aprovado e o layout acessível. |
+| [x] | Fixar a revisão canônica | App Atmosfera fornece; Site registra | Registrar commit de origem, versões e hashes do manifesto de `docs/legal/`; usar PRIVACIDADE.md 1.22, TERMOS.md 1.12 e CONTATO.md 1.10 ou revisão posterior explicitamente aprovada. Não usar históricos de 05/10 como fonte vigente. |
+| [x] | Confirmar cobertura do próprio site | App Atmosfera redige; Gabriel aprova; Site confere | Documento descreve também hospedagem Cloudflare Pages, tratamento técnico associado à hospedagem, contato e ausência de analytics/cookies/rastreio. Lacunas voltam à fonte canônica; não inventar compromissos nem alterar só a cópia do site. |
+| [x] | Adequar a importação e substituir cópias antigas | Site | Fluxo usa fontes canônicas ou exportações geradas e conferidas a partir delas, com versões/hashes rastreáveis. Atualizar o importador que hoje lê `public_html/`, suas instruções e a fixture de privacidade; substituir os três HTMLs em `public/documentos/` preservando o conteúdo aprovado e o layout acessível. |
 | [ ] | Validar fidelidade e apresentação | Site | Comparação de conteúdo com a revisão canônica sem perdas; links internos corretos; Playwright de privacidade e demais verificações passam; leitura sem JavaScript, no celular e impressão conferidas. |
 | [ ] | Encerrar metadados pendentes para publicação | Gabriel decide; App Atmosfera registra; Site sincroniza | Autorização de publicação, vigência real, versão do app e URLs finais registradas no fluxo canônico; manifesto coerente e cópias regeneradas/conferidas. Não inferir vigência pela data do PR nem pelo aceite parcial da redação. |
 
-**Estado atual:** o site ainda contém Privacidade 1.1 e Termos 1.0 e usa exportações antigas. O importador `scripts/prepare-documents.mjs` lê `public_html/`. No Atmosfera, o README de `docs/legal/` descreve a geração por `python scripts/sincronizar_documentos_legais.py` e a conferência com `--check`. Consultar essas instruções na revisão escolhida antes de importar; este checklist não autoriza publicar rascunhos.
+**Estado da candidata do PR #6:** Privacidade 1.23, Termos 1.13 e Contato 1.11 da revisão `916e4340b363fb84b706539939a94ae33d67e99a`, sem alterar a redação canônica. A importação fixa anterior foi substituída pelo build automático: valida fontes Markdown e HTML contra manifesto do mesmo SHA; `scripts/documents-source.json` e os HTMLs manuais foram removidos no novo escopo. O primeiro pin real foi autorizado em 10/11/2026 na issue #4 com SHA integrado `916e4340b363fb84b706539939a94ae33d67e99a`, hash do manifesto `d4c585c3fb606f3b14a5d8ea1282375d51bc50179b87ec208cd522f41ad3af81` e aceite público conferidos; pin preenchido e gate final aprovado em `a4a5d59`. O relatório registra a conferência canônica por `python3 scripts/sincronizar_documentos_legais.py --check`. Cobertura Pages e aceite editorial foram integrados no PR #110 do Atmosfera; vigência real e verificação pública permanecem pendentes. Este checklist não autoriza publicar rascunhos.
 
 Rotas que devem ser preservadas e verificadas no domínio final:
 
@@ -80,7 +107,7 @@ Executar na ordem abaixo. Não retirar o endereço atual antes de confirmar que 
 
 | Estado | Entrega | Responsável | Critério de pronto |
 | --- | --- | --- | --- |
-| [ ] | Autorizar a versão completa | Willian aprova conteúdo; Gabriel autoriza publicação | Conteúdo e documentos aprovados, vigência definida, critérios anteriores atendidos e commit candidato identificado; sem versão provisória. A ficha do Play continua dependente da publicação do app. |
+| [ ] | Autorizar a versão completa | Willian aprova conteúdo; Gabriel autoriza publicação | Conteúdo e documentos aprovados, vigência definida, critérios anteriores atendidos e commit candidato identificado; considerar o pedido posterior de publicação em 09/11/2026, preservando pendências explícitas. A ficha do Play continua dependente da publicação do app. |
 | [ ] | Publicar o site | Gabriel | Deploy do commit aprovado no domínio final; registrar URL, commit e identificação pública do deploy sem dados de conta. |
 | [ ] | Verificar acesso público | Site verifica; Gabriel aceita | Abrir início e as três rotas legais por HTTPS, em sessão anônima e no celular, sem login; receber os documentos corretos, e não o HTML da landing por fallback. Conferir versões, links, fontes, imagens, navegação e ausência de rastreio. |
 | [ ] | Trocar política no Google Play Console | Gabriel / App Atmosfera | Somente após a verificação pública: substituir o link pela URL HTTPS final de privacidade e conferir o valor salvo no Console. Registro de conclusão sem capturas ou dados privados no repositório. |
@@ -91,4 +118,4 @@ Executar na ordem abaixo. Não retirar o endereço atual antes de confirmar que 
 
 ## Evidências e manutenção
 
-Registrar o andamento na issue #1 e nos PRs correspondentes. Para cada etapa concluída, indicar o item, quem confirmou, a data e a evidência pública. Atualizações de catálogo, preços (se adotados), documentos ou URLs devem passar novamente pelos critérios afetados antes de publicar. Este PR documenta o trabalho; não compra domínio, cria contas, publica o site ou altera o Console.
+Registrar o andamento na issue #1 e nos PRs correspondentes. Para cada etapa concluída, indicar o item, quem confirmou, a data e a evidência pública. Atualizações de catálogo, preços (se adotados), documentos ou URLs devem passar novamente pelos critérios afetados antes de publicar. O checklist acompanha preparação e aceite; não autoriza compra, criação de contas, publicação ou alteração do Console.
