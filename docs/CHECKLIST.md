@@ -24,11 +24,11 @@ Marcar um item somente quando seu critério estiver atendido. Registrar evidênc
 
 Preparação técnica integrada no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
 
-**Próximo passo:** corrigir a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) antes da publicação. PR #6 integrado em `703f632df9b7e73f768198720dec06f920953675` em 10/11/2026, após revisão independente e gate final. Gabriel configura Pages, Deploy Hook e secret com a Friday; conferir operação real e domínio após o deploy. Conteúdo de Willian segue para PRs posteriores.
+**Próximo passo:** integrar o [PR #8](https://github.com/Solucoes-md/terra.app/pull/8), correção da issue #5, após revisão final. Em seguida, Gabriel configura Pages, Deploy Hook e secret com a Friday; verificar domínio, HTTPS, três rotas curtas e atualização real após deploy. PR #6 integrado em `703f632`; conteúdo de Willian segue para PRs posteriores. Nenhum deploy realizado.
 
 **Dependência legal anterior (histórico):** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
 
-**Pendência de dependências:** a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) registra os alertas preexistentes encontrados por `npm audit --json` em 09/11/2026 no commit `c2fe470`: correção e conferência antes da publicação, separadas da importação legal.
+**Dependências — PR #8:** correção entregue para integração na issue #5. Em 10/11/2026, `npm audit --json` no head `d485b71` registrou zero vulnerabilidades em todos os níveis (base anterior: 12 dependências afetadas, 10 moderadas e 2 altas). `npm ci`, typecheck, lint, build público e e2e aprovados: 20 testes Node + 27 Playwright. Problema: alertas podiam voltar sem bloquear publicação → trava no build e `npm run check`, com teste `scripts/audit.test.mjs` comprovado por falha ao remover a guarda e controle verde. Overrides transitivos restritos documentados no README. A medição é datada; o build consulta o audit atual e falha também por indisponibilidade. Não comprova ausência de vulnerabilidades futuras ou operação real no Pages.
 
 ### Atualização automática — integrada no PR #6
 
