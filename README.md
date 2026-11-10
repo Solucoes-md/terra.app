@@ -75,11 +75,17 @@ O dono configura o Deploy Hook na conta Cloudflare do Rafael; `atmosfera-lead` c
 ## Verificar
 
 ```powershell
-npm run lint
-npm run typecheck
+npm ci
+npm run check
 npm run build
 npm run test:e2e
 ```
+
+`npm run check` executa `npm run audit`, typecheck e lint em sequência, sem ignorar falhas. `npm run audit` usa a base atual do npm para todas as dependências, incluindo desenvolvimento, e reprova alertas de nível baixo ou superior (`--audit-level=low`); erro de rede/registro também reprova. Para obter o relatório estruturado, execute `npm audit --json`.
+
+O build obrigatório de publicação também executa a auditoria antes de compilar ou buscar documentos. Apaga `dist` e os gerados antes de auditar e depois de qualquer erro; vulnerabilidade ou indisponibilidade do audit cancela o build, sem deixar saída anterior publicável. `npm ci` imprime alertas, mas não substitui o gate do audit. Execute o build por `npm run build`.
+
+Origem da trava: 10/11/2026, issue #5, alertas preexistentes nas ferramentas de desenvolvimento não bloqueavam o build. Vite permanece na linha 8; Zod transitivo é atualizado pelo lockfile. Os overrides restritos a `minimatch` nos consumidores `eslint`, `@eslint/config-array` e `@typescript-eslint/typescript-estree` usam a correção 11.0.5 do [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249), pois esses consumidores ainda declaram a linha 10 afetada. Não são exceções de auditoria; remova-os quando os consumidores aceitarem uma versão corrigida e o audit permanecer aprovado.
 
 Os testes Playwright verificam 320, 375, 768, 1024 e 1440 px; título em duas linhas; ausência de rolagem horizontal; imagens carregadas; seleção por teclado; menu móvel; prévia de chuva e noite; pausa; movimento reduzido; redimensionamento; e configuração dos CTAs.
 
