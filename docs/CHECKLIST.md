@@ -22,15 +22,15 @@ Marcar um item somente quando seu critério estiver atendido. Registrar evidênc
 
 ## Andamento da próxima entrega — 09/11/2026
 
-Preparação técnica entregue no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
+Preparação técnica integrada no [PR #6](https://github.com/Solucoes-md/terra.app/pull/6), da [issue #4](https://github.com/Solucoes-md/terra.app/issues/4): conteúdo conferido contra a revisão fixada do app, seções apresentadas para decisão de Willian e documentos canônicos importados com proveniência e testes. Aceite de conteúdo e publicação continuam pendentes; entrega técnica não significa site pronto para publicar.
 
-**Próximo passo:** integrar o PR #6 após revisão final; corrigir a issue #5 antes de publicar. Gabriel configura Pages, Deploy Hook e secret com a Friday; a operação real e o domínio serão verificados após o deploy. Revisão editorial de Willian segue para PRs posteriores, sem bloquear esta publicação.
+**Próximo passo:** corrigir a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) antes da publicação. PR #6 integrado em `703f632df9b7e73f768198720dec06f920953675` em 10/11/2026, após revisão independente e gate final. Gabriel configura Pages, Deploy Hook e secret com a Friday; conferir operação real e domínio após o deploy. Conteúdo de Willian segue para PRs posteriores.
 
 **Dependência legal anterior (histórico):** na revisão `d8ed440d5f12dd9f1cacd110ca0343444183420a` do Atmosfera, a política ainda descreve Google Sites para as páginas públicas; a referência a Cloudflare R2 não cobre automaticamente Cloudflare Pages. A adequação precisa ocorrer na fonte canônica antes do aceite da hospedagem do novo site, sem alterar somente a cópia local.
 
 **Pendência de dependências:** a [issue #5](https://github.com/Solucoes-md/terra.app/issues/5) registra os alertas preexistentes encontrados por `npm audit --json` em 09/11/2026 no commit `c2fe470`: correção e conferência antes da publicação, separadas da importação legal.
 
-### Atualização automática — gate final aprovado
+### Atualização automática — integrada no PR #6
 
 **Decisão editorial posterior (09/11/2026, 16:57, via Friday):** publicar somente documentos com `aprovado_para_publicacao=true` no manifesto canônico e aceite explícito do dono. Se a main contiver rascunho, manter a última revisão aprovada fixada por commit/hashes; sem revisão aprovada, o build falha. Falha de rede ou integridade também interrompe o build. A primeira publicação depende do aceite do delta Pages na issue #89 do Atmosfera. Cada revisão nova exige novo aceite; o site não promove rascunho automaticamente.
 
@@ -55,7 +55,7 @@ A issue #4/PR #6 foi ampliada após o pedido de Gabriel, repassado pela Friday e
 | [x] | Validar a versão candidata | Site | `npm run typecheck`, `npm run lint`, `npm run build` e `npm run test:e2e` terminam com sucesso no mesmo commit; registrar resultados no PR. No ambiente sem navegador, instalar Chromium com `npx playwright install chromium` antes dos testes. |
 | [x] | Manter instruções portáveis | Site | README contém clone, instalação, execução, build, testes e caminhos relativos ou configuráveis, sem diretórios de máquina pessoal. Conferir os comandos a partir da raiz do checkout. |
 | [ ] | Revisar acessibilidade e interação | Site | Testes existentes e revisão manual cobrem celular e desktop, teclado, foco, menu, pausa, movimento reduzido, imagens e ausência de rolagem horizontal; nenhuma regressão pendente. |
-| [ ] | Entregar por PR | Site; revisão técnica da lead | Para esta publicação, Gabriel dispensou a espera por Willian; decisões editoriais dele seguem abertas para PRs posteriores. Diff revisado e aprovado pela lead antes do merge; sem dados pessoais ou segredos; preservar a stack e os testes existentes. |
+| [x] | Entregar por PR | Site; revisão técnica da lead | Para esta publicação, Gabriel dispensou a espera por Willian; decisões editoriais dele seguem abertas para PRs posteriores. Diff revisado e aprovado pela lead antes do merge; sem dados pessoais ou segredos; preservar a stack e os testes existentes. |
 
 Histórico da análise inicial de 09/11/2026: Playwright não concluiu e foi interrompido. A entrega do PR #6 substitui essa evidência para a candidata técnica: em `66a547a`, typecheck, lint e build passaram, com 3 testes de integridade/importação e 23 Playwright aprovados. O relatório do PR registra controle negativo das guardas de hash e compatibilidade. O aceite final de conteúdo e publicação segue pendente.
 
@@ -76,7 +76,7 @@ Histórico da análise inicial de 09/11/2026: Playwright não concluiu e foi int
 | --- | --- | --- | --- |
 | [x] | Fixar a revisão canônica | App Atmosfera fornece; Site registra | Registrar commit de origem, versões e hashes do manifesto de `docs/legal/`; usar PRIVACIDADE.md 1.22, TERMOS.md 1.12 e CONTATO.md 1.10 ou revisão posterior explicitamente aprovada. Não usar históricos de 05/10 como fonte vigente. |
 | [x] | Confirmar cobertura do próprio site | App Atmosfera redige; Gabriel aprova; Site confere | Documento descreve também hospedagem Cloudflare Pages, tratamento técnico associado à hospedagem, contato e ausência de analytics/cookies/rastreio. Lacunas voltam à fonte canônica; não inventar compromissos nem alterar só a cópia do site. |
-| [x] | Adequar a importação e substituir cópias antigas | Site | Fluxo usa fontes canônicas ou exportações geradas e conferidas a partir delas, com versões/hashes rastreáveis. Atualizar o importador que hoje lê `public_html/`, suas instruções e a fixture de privacidade; substituir os três HTMLs em `public/documentos/` preservando o conteúdo aprovado e o layout acessível. |
+| [x] | Adequar a importação e substituir cópias antigas | Site | Fluxo usa fontes canônicas ou exportações geradas e conferidas a partir delas, com versões/hashes rastreáveis. Build automático substitui o importador antigo e os HTMLs manuais de `public/documentos/`; versões e hashes rastreáveis, conteúdo aprovado e layout acessível preservados. |
 | [ ] | Validar fidelidade e apresentação | Site | Comparação de conteúdo com a revisão canônica sem perdas; links internos corretos; Playwright de privacidade e demais verificações passam; leitura sem JavaScript, no celular e impressão conferidas. |
 | [ ] | Encerrar metadados pendentes para publicação | Gabriel decide; App Atmosfera registra; Site sincroniza | Autorização de publicação, vigência real, versão do app e URLs finais registradas no fluxo canônico; manifesto coerente e cópias regeneradas/conferidas. Não inferir vigência pela data do PR nem pelo aceite parcial da redação. |
 
