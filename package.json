@@ -10,8 +10,11 @@
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint .",
-    "test:e2e": "npm run test:documents && playwright test",
-    "test:documents": "node --test scripts/documents.test.mjs scripts/build.test.mjs"
+    "test:e2e": "npm run test:audit && npm run test:documents && playwright test",
+    "test:documents": "node --test scripts/documents.test.mjs scripts/build.test.mjs",
+    "audit": "npm audit --audit-level=low",
+    "test:audit": "node --test scripts/audit.test.mjs",
+    "check": "npm run audit && npm run typecheck && npm run lint"
   },
   "dependencies": {
     "@gsap/react": "2.1.2",
@@ -33,6 +36,17 @@
     "sharp": "0.35.5",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.0",
-    "vite": "8.3.2"
+    "vite": "8.3.7"
+  },
+  "overrides": {
+    "eslint": {
+      "minimatch": "11.0.5"
+    },
+    "@eslint/config-array": {
+      "minimatch": "11.0.5"
+    },
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.5"
+    }
   }
 }
